@@ -1,3 +1,7 @@
+# 日本語フォントがサイズオーバー(gitの上限100MBを超える)
+# 8192*8192を4096*4096にしているので必要であれば
+# Assets/Projects/Fonts/NotoSansJP-Regular SDF.asset
+
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
