@@ -12,10 +12,17 @@ namespace Projects.MiniGames.WakamonoKotoba
         [SerializeField] private Button choicePanel1;
         [SerializeField] private Button choicePanel2;
         [SerializeField] private Button choicePanel3;
-
+        [SerializeField] private GameObject collectPanel;
+        [SerializeField] private GameObject incollectPanel;
+        public int quizCount = 5; // クイズの数
+        
+        public int correctCount = 0; // 正解数
         private TextMeshProUGUI choiceText1;
         private TextMeshProUGUI choiceText2;
         private TextMeshProUGUI choiceText3;
+
+        [SerializeField] private GameObject quizResultShower;
+        [SerializeField] private GameObject popupPanel;
 
         private List<QuizQuestion> quizList;
 
@@ -23,8 +30,15 @@ namespace Projects.MiniGames.WakamonoKotoba
         // 現在のクイズの問題 
         private QuizQuestion currentQuizQuestion;
 
+        private bool isShowingResult = false;
+
+        private float clickTime = -1f;
+
+        private bool isGameActive = true;
+
         void choiceQuestion()
         {
+            quizCount--;
             Random.Range(0, quizList.Count);
             // ここでランダムにクイズを選ぶ処理を実装する
             // 例えば、quizListからランダムに1問選んでcurrentQuizQuestionに設定する
@@ -41,6 +55,9 @@ namespace Projects.MiniGames.WakamonoKotoba
         }
         void OnSelectButton(int index)
         {
+            if (isShowingResult || Time.time - clickTime < 0.2f || !isGameActive)
+            { return; }
+
             Debug.Log(index + "番の選択肢が選ばれました。");
 
             if (currentQuizQuestion == null)
@@ -56,13 +73,19 @@ namespace Projects.MiniGames.WakamonoKotoba
 
             if (index == currentQuizQuestion.correctIndex)
             {
-                Debug.Log("正解です！");
+                // 正解の処理
+                collectPanel.SetActive(true);
+                incollectPanel.SetActive(false);
+                correctCount++;
+                Debug.Log("正解の選択肢: " + currentQuizQuestion.choices[index]);
             }
             else
             {
+                collectPanel.SetActive(false);
+                incollectPanel.SetActive(true);
                 Debug.Log("不正解です。");
             }
-            //[TODO] ここで正誤判定などを行う
+            isShowingResult = true;
         }
 
         void setQuizQuestion(QuizQuestion quizQuestion)
@@ -92,18 +115,44 @@ namespace Projects.MiniGames.WakamonoKotoba
             quizList = QuizDataConverter.LoadAndConvert();
 
             Debug.Log("クイズの数: " + quizList.Count);
-            Debug.Log("1問目の問題: " + quizList[0].question);
-            Debug.Log("1問目の選択肢: " + string.Join(", ", quizList[0].choices));
-
             // ここで最初のクイズを設定
-            if (quizList.Count > 0)
+            if (quizList.Count > 0 && quizCount > 0)
             {
                 choiceQuestion();
             }
+
+            collectPanel.SetActive(false);
+            incollectPanel.SetActive(false);
         }
         // Update is called once per frame
         void Update()
-        {
+        {   
+            if (!isGameActive)
+            {
+                return; // ゲームが終了している場合は何もしない
+            }
+            if (Input.GetMouseButtonDown(0) && isShowingResult)
+            {
+                isShowingResult = false;
+                collectPanel.SetActive(false);
+                incollectPanel.SetActive(false);
+                if (quizList.Count > 0 && quizCount > 0)
+                {
+                    choiceQuestion();
+                }
+                else if (quizCount == 0)
+                {
+                    isGameActive = false; // ゲームを終了状態にする
+                    Instantiate(quizResultShower, popupPanel.transform);
+                    quizResultShower.GetComponent<QuizResultShower>().correctCount = correctCount;
+                    quizResultShower.GetComponent<QuizResultShower>().quizCount = answeredQuizList.Count;
+                    quizResultShower.GetComponent<QuizResultShower>().showResult();
+                    // クイズが終了したことをログに出力
+                    Debug.Log("クイズが終了しました。正解数: " + correctCount);
+                }
+                clickTime = Time.time;
+
+            }
 
         }
     }
