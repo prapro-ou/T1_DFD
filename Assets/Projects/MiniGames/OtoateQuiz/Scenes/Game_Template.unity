@@ -1681,6 +1681,15 @@ MonoBehaviour:
     explanationA: "A\u306FNintendo Switch"
     explanationB: "B\u304C\u6B63\u89E3\uFF01"
     explanationC: "C\u306FWii"
+  - prompt: "\u99C5\u306E\u6539\u672D\u3067\u805E\u3053\u3048\u3066\u304F\u308B\u97F3\u306F\u3069\u308C\uFF1F"
+    options:
+    - {fileID: 8300000, guid: 9c5948c376cf7a34cbf22488b73ab287, type: 3}
+    - {fileID: 8300000, guid: 26f7a0331c56e5b42b62a4e9fda5affc, type: 3}
+    - {fileID: 8300000, guid: d4ec59707f1867a45840adff2e5fa5fd, type: 3}
+    correctIndex: 2
+    explanationA: "A\u306F\u30A4\u30F3\u30BF\u30FC\u30DB\u30F3\u306E\u97F3"
+    explanationB: "B\u306F\u5165\u5E97\u30C1\u30E3\u30A4\u30E0\u306E\u97F3"
+    explanationC: "C\u304C\u6B63\u89E3\uFF01"
   quizScreen: {fileID: 1728131170}
   promptText: {fileID: 2029442281}
   playButtons:
