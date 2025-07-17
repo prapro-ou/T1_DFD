@@ -12,6 +12,13 @@ namespace Project.Minigame.Stopwatch
 
         private bool isClick = false;
 
+        private bool isbActive = false;
+
+        public void OnStart()
+        {
+            isbActive = true;
+        }
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -21,23 +28,26 @@ namespace Project.Minigame.Stopwatch
         // Update is called once per frame
         void Update()
         {
-            if (isClick)
+            if (isbActive)
             {
-                timeText.enabled = true;
-                return;
-            }
-            countup += Time.deltaTime;
-            timeText.text = countup.ToString("f1");
-            if (countup > 2)
-            {
-                timeText.enabled = false;
-            }
-
-            if (Input.GetMouseButtonDown(0))
+                if (isClick)
                 {
-                    timeText.text = countup.ToString("f1");
+                    timeText.enabled = true;
+                    return;
+                }
+                countup += Time.deltaTime;
+                timeText.text = countup.ToString("f2");
+                if (countup > 2)
+                {
+                    timeText.enabled = false;
+                }
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    timeText.text = countup.ToString("f2");
                     isClick = true;
                 }
+            }
         }
     }
 }

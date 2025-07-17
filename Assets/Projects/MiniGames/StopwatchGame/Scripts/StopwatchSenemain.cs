@@ -6,7 +6,7 @@ namespace Project.Minigame.Stopwatch
     {
         public void change2main_button()
         {
-            SceneManager.LoadScene("Game_Template");
+            SceneManager.LoadScene("StopwatchScene");
         }
     }
 }
