@@ -17,6 +17,8 @@ namespace Projects.Core
         None = 0, // 未設定状態
         Home,
         Title,
+        StopwatchGame,
+        WakamonoKotoba
     }
 
     public static class SceneHelper
@@ -30,6 +32,8 @@ namespace Projects.Core
             {
                 "Home" => GameScenes.Home,
                 "Title" => GameScenes.Title,
+                "StopwatchScene" => GameScenes.StopwatchGame,
+                "WakamonoKotoba" => GameScenes.WakamonoKotoba,
                 _ => GameScenes.None,
             };
         }
@@ -43,6 +47,8 @@ namespace Projects.Core
             {
                 GameScenes.Home => "Home",
                 GameScenes.Title => "Title",
+                GameScenes.StopwatchGame => "StopwatchScene",
+                GameScenes.WakamonoKotoba => "WakamonoKotoba",
                 _ => string.Empty,
             };
         }
