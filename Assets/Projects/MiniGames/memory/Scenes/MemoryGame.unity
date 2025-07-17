@@ -644,6 +644,7 @@ MonoBehaviour:
   resultPanel: {fileID: 0}
   CatHouse: {fileID: 1718704407}
   startButton: {fileID: 1967965885}
+  submit: {fileID: 0}
 --- !u!4 &435804567
 Transform:
   m_ObjectHideFlags: 0
@@ -901,11 +902,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 36560259320718457, guid: e9d3dfe3b4ad1db4c96367580c522665, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 497.12
+      value: 166.19
       objectReference: {fileID: 0}
     - target: {fileID: 36560259320718457, guid: e9d3dfe3b4ad1db4c96367580c522665, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 136
+      value: 187.1
       objectReference: {fileID: 0}
     - target: {fileID: 36560259320718457, guid: e9d3dfe3b4ad1db4c96367580c522665, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -1375,14 +1376,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 2
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 2
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0

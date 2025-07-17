@@ -36,6 +36,9 @@ namespace TaikoGame
         [SerializeField] private Transform CatHouse; // 作った：水マリコの親オブジェクト
 
         [SerializeField] private Button startButton;
+        // [SerializeField] private Textarea inputtextarea;
+        [SerializeField] private Button submit;
+
 
         // ゲーム開始時に呼ばれる
         void Start()
@@ -180,9 +183,20 @@ namespace TaikoGame
             }
         }
 
+        // public void GetText() //TODO
+        // {
+        //     isGetText = false;
+        //     txt.text = "";
+
+
+        // }
+
         // 回答を提出する（UIボタンなどから呼び出す）
         public void SubmitAnswer()
         {
+
+            startButton.onClick.AddListener(OnStartButton);
+
             int playerAnswer;
             if (int.TryParse(answerInputField.text, out playerAnswer))
             {
@@ -205,6 +219,12 @@ namespace TaikoGame
             }
 
             // StartCoroutine(NextRoundDelay());
+        }
+
+        public void OnSubmitButton()
+        {
+            uiManager.ShowResult();
+
         }
 
         public void OnRetryButton()
