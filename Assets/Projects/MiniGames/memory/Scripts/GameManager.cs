@@ -1,11 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections; // IEnumerator を使うために必要
 using TMPro; // UIテキストを使う場合 (UnityのTextMeshProを別途インポート)
+
 
 namespace TaikoGame
 {
     public class GameManager : MonoBehaviour
     {
+        public UIManager uiManager;   // インスペクタで割り当て
         public GameObject suimarikoPrefab; // 水マリコのプレハブ
 
         public int minSuimariko = 10;      // 表示する水マリコの最小数（10～20個に調整）
@@ -32,25 +35,41 @@ namespace TaikoGame
 
         [SerializeField] private Transform CatHouse; // 作った：水マリコの親オブジェクト
 
+        [SerializeField] private Button startButton;
 
         // ゲーム開始時に呼ばれる
         void Start()
         {
+            // まだゲームを流さない。タイトル画面だけ出す
+            uiManager.ShowTitle();
+            // resultPanel.SetActive(false);  // 念のため
             if (resultPanel != null) resultPanel.SetActive(false);
             if (gamePanel != null) gamePanel.SetActive(true);
 
-            scoreText.text = "スコア: " + currentScore.ToString();
-            StartGame();
+            startButton.onClick.AddListener(OnStartButton);
+
+            // scoreText.text = "スコア: " + currentScore.ToString();
+            // StartGame();
         }
 
         // ゲームを開始する
+        public void OnStartButton()
+        {
+            uiManager.ShowGame();     // ゲーム画面に切り替え（幕開きアニメは次ステップ）
+            // currentScore = 0;
+            // scoreText.text = "スコア: 0";
+            // scoreText.text = "スコア: " + currentScore.ToString(); //みんなに合わせる
+            StartGame();              // 既存のゲームシーケンス開始
+        }
+
         public void StartGame()
         {
+            Debug.Log("start game");
             if (isGamePlaying) return;
 
             isGamePlaying = true;
-            answerInputField.interactable = false; // 回答中は入力不可
-            answerInputField.text = "";            // 入力欄をクリア
+            // answerInputField.interactable = false; // 回答中は入力不可
+            // answerInputField.text = "";            // 入力欄をクリア
             ClearSuimariko();                      // 前回の水マリコを消す（念のため）
             StartCoroutine(GameSequence());        // ゲームシーケンスを開始
         }
@@ -83,7 +102,7 @@ namespace TaikoGame
             // ClearSuimariko(); // 各水マリコが自分で消滅するため、ここでは不要。
                                // ただし、displayTime中に強制的に消したい場合は残しても良い。
                                // 完全に流れ終わるのを待つ場合は、この行は削除またはコメントアウト。
-
+            uiManager.ShowInputAnswer();
 
             // 回答フェーズ
             answerInputField.interactable = true; // 回答可能にする
@@ -185,14 +204,28 @@ namespace TaikoGame
                 Debug.Log("数字を入力してください。");
             }
 
-            StartCoroutine(NextRoundDelay());
+            // StartCoroutine(NextRoundDelay());
         }
 
-        // 次のラウンドへ移行するまでのディレイ
-        IEnumerator NextRoundDelay()
+        public void OnRetryButton()
         {
-            yield return new WaitForSeconds(2.0f); // 2秒待ってから次のラウンド
-            StartGame(); // 次のラウンドを開始
+            uiManager.ShowGame();
+            currentScore = 0;
+            scoreText.text = "スコア: 0";
+            StartGame();
         }
+
+        public void OnBackToTitleButton()
+        {
+            uiManager.ShowTitle();
+        }
+
+
+        // // 次のラウンドへ移行するまでのディレイ
+        // IEnumerator NextRoundDelay()
+        // {
+        //     yield return new WaitForSeconds(2.0f); // 2秒待ってから次のラウンド
+        //     StartGame(); // 次のラウンドを開始
+        // }
     }
 }
