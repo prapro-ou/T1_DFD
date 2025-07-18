@@ -7,13 +7,12 @@ public class QuizManager : MonoBehaviour
     [System.Serializable]
     public class Quiz
     {
-        public string prompt;         // お題
-        public AudioClip[] options;   // 3つの選択肢の音
-        public int correctIndex;      // 正解のインデックス（0〜2）
-        public string explanationA;   // Aの解説
-        public string explanationB;   // Bの解説
-        public string explanationC;   // Cの解説
-
+        public string prompt;
+        public AudioClip[] options;
+        public int correctIndex;
+        public string explanationA;
+        public string explanationB;
+        public string explanationC;
     }
 
     public Quiz[] quizList;
@@ -21,14 +20,17 @@ public class QuizManager : MonoBehaviour
     [Header("問題表示")]
     public GameObject quizScreen;
     public TMP_Text promptText;
-    public Button[] playButtons;      // 音再生ボタン
-    public Button[] answerButtons;    // 回答ボタン
+    public Button[] playButtons;       // A/B/C 音再生ボタン
+    public Button[] answerButtons;     // A/B/C 選択ボタン
 
     [Header("結果表示")]
     public GameObject resultScreen;
-    public TMP_Text resultTitleText;   // 「正解！」 or 「不正解…」
-    public TMP_Text explanationText;   // 解説文
-    public Button nextButton;          // 「次へ」ボタン
+    public TMP_Text resultTitleText;
+    public TMP_Text explanationText;
+    public Button nextButton;
+
+    [Header("解説再生ボタン")]
+    public Button[] resultPlayButtons; // 解説画面用A/B/C音再生ボタン
 
     [Header("音声")]
     public SoundManager soundManager;
@@ -51,12 +53,40 @@ public class QuizManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             int index = i;
+
             playButtons[i].onClick.RemoveAllListeners();
             playButtons[i].onClick.AddListener(() => PlaySound(index));
 
             answerButtons[i].onClick.RemoveAllListeners();
             answerButtons[i].onClick.AddListener(() => CheckAnswer(index));
+
+            // 初期色
+            SetButtonColor(answerButtons[i], Color.white);
         }
+
+        for (int i = 0; i < 3; i++)
+        {
+            int index = i;
+            resultPlayButtons[i].onClick.RemoveAllListeners();
+            resultPlayButtons[i].onClick.AddListener(() => PlaySound(index));
+        }
+    }
+
+    void CheckAnswer(int selectedIndex)
+    {
+        var quiz = quizList[currentQuizIndex];
+        bool isCorrect = (quiz.correctIndex == selectedIndex);
+
+        resultTitleText.text = isCorrect
+            ? "<color=#FF0000>正解！</color>"
+            : "<color=#0000FF>不正解…</color>";
+
+        explanationText.text = $"A: {quiz.explanationA}\n" +
+                               $"B: {quiz.explanationB}\n" +
+                               $"C: {quiz.explanationC}";
+
+        soundManager.PlaySound(isCorrect ? correctSound : wrongSound);
+        ShowResultScreen();
     }
 
     void PlaySound(int index)
@@ -65,30 +95,12 @@ public class QuizManager : MonoBehaviour
         soundManager.PlaySound(quiz.options[index]);
     }
 
-    void CheckAnswer(int selectedIndex)
-    {
-        var quiz = quizList[currentQuizIndex];
-        bool isCorrect = (quiz.correctIndex == selectedIndex);
-
-        // 正解／不正解テキストと音を設定
-        resultTitleText.text = isCorrect
-        ? "<color=#FF0000>正解！</color>"     // 赤（正解）
-        : "<color=#0000FF>不正解…</color>";  // 青（不正解）
-        explanationText.text =  $"A: {quiz.explanationA}\n" +
-                                $"B: {quiz.explanationB}\n" +
-                                $"C: {quiz.explanationC}";
-        soundManager.PlaySound(isCorrect ? correctSound : wrongSound);
-
-        ShowResultScreen();
-    }
-
     public void OnNextButton()
     {
         currentQuizIndex++;
         if (currentQuizIndex >= quizList.Length)
         {
             Debug.Log("全問終了！");
-            // 必要なら終了画面へ
             return;
         }
 
@@ -107,5 +119,13 @@ public class QuizManager : MonoBehaviour
         quizScreen.SetActive(false);
         resultScreen.SetActive(true);
     }
-}
 
+    void SetButtonColor(Button btn, Color color)
+    {
+        var colors = btn.colors;
+        colors.normalColor = color;
+        colors.selectedColor = color;
+        colors.highlightedColor = color;
+        btn.colors = colors;
+    }
+}
