@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class QuizManager : MonoBehaviour
 {
@@ -20,87 +21,121 @@ public class QuizManager : MonoBehaviour
     [Header("問題表示")]
     public GameObject quizScreen;
     public TMP_Text promptText;
-    public Button[] playButtons;       // A/B/C 音再生ボタン
-    public Button[] answerButtons;     // A/B/C 選択ボタン
+    public Button[] playButtons;          // 問題画面での音声ボタン A〜C
+    public Button[] answerButtons;        // 回答選択ボタン A〜C
+    public Button confirmButton;
 
     [Header("結果表示")]
     public GameObject resultScreen;
     public TMP_Text resultTitleText;
     public TMP_Text explanationText;
     public Button nextButton;
-
-    [Header("解説再生ボタン")]
-    public Button[] resultPlayButtons; // 解説画面用A/B/C音再生ボタン
+    public Button[] replayButtons;        // 解説画面での音声再生ボタン A〜C
 
     [Header("音声")]
     public SoundManager soundManager;
     public AudioClip correctSound;
     public AudioClip wrongSound;
 
+    private List<Quiz> randomizedQuizzes = new List<Quiz>();
     private int currentQuizIndex = 0;
+    private int selectedIndex = -1;
 
     void Start()
     {
+        GenerateRandomQuizzes();
         ShowQuizScreen();
         SetupQuiz();
     }
 
+    void GenerateRandomQuizzes()
+    {
+        List<Quiz> originalList = new List<Quiz>(quizList);
+        for (int i = 0; i < 5 && originalList.Count > 0; i++)
+        {
+            int randIndex = Random.Range(0, originalList.Count);
+            randomizedQuizzes.Add(originalList[randIndex]);
+            originalList.RemoveAt(randIndex);
+        }
+    }
+
     void SetupQuiz()
     {
-        var quiz = quizList[currentQuizIndex];
+        selectedIndex = -1;
+        confirmButton.interactable = false;
+
+        var quiz = randomizedQuizzes[currentQuizIndex];
         promptText.text = quiz.prompt;
 
+        // 問題画面：音声再生と選択肢のボタン設定
         for (int i = 0; i < 3; i++)
         {
             int index = i;
-
             playButtons[i].onClick.RemoveAllListeners();
             playButtons[i].onClick.AddListener(() => PlaySound(index));
 
             answerButtons[i].onClick.RemoveAllListeners();
-            answerButtons[i].onClick.AddListener(() => CheckAnswer(index));
-
-            // 初期色
-            SetButtonColor(answerButtons[i], Color.white);
+            answerButtons[i].onClick.AddListener(() => OnSelectAnswer(index));
         }
 
+        confirmButton.onClick.RemoveAllListeners();
+        confirmButton.onClick.AddListener(() => CheckAnswer());
+    }
+
+    void PlaySound(int index)
+    {
+        var quiz = randomizedQuizzes[currentQuizIndex];
+        soundManager.PlaySound(quiz.options[index]);
+    }
+
+    void OnSelectAnswer(int index)
+    {
+        selectedIndex = index;
+        confirmButton.interactable = true;
+
+        // 選択中のボタンを視覚的に強調（例: 色変更）
         for (int i = 0; i < 3; i++)
         {
-            int index = i;
-            resultPlayButtons[i].onClick.RemoveAllListeners();
-            resultPlayButtons[i].onClick.AddListener(() => PlaySound(index));
+            ColorBlock cb = answerButtons[i].colors;
+            cb.normalColor = (i == index) ? Color.yellow : Color.white;
+            answerButtons[i].colors = cb;
         }
     }
 
-    void CheckAnswer(int selectedIndex)
+    void CheckAnswer()
     {
-        var quiz = quizList[currentQuizIndex];
+        var quiz = randomizedQuizzes[currentQuizIndex];
         bool isCorrect = (quiz.correctIndex == selectedIndex);
 
         resultTitleText.text = isCorrect
             ? "<color=#FF0000>正解！</color>"
             : "<color=#0000FF>不正解…</color>";
 
-        explanationText.text = $"A: {quiz.explanationA}\n" +
-                               $"B: {quiz.explanationB}\n" +
-                               $"C: {quiz.explanationC}";
+        explanationText.text =
+            $"A: {quiz.explanationA}\n" +
+            $"B: {quiz.explanationB}\n" +
+            $"C: {quiz.explanationC}";
 
         soundManager.PlaySound(isCorrect ? correctSound : wrongSound);
-        ShowResultScreen();
-    }
 
-    void PlaySound(int index)
-    {
-        var quiz = quizList[currentQuizIndex];
-        soundManager.PlaySound(quiz.options[index]);
+        // 解説画面のレプレイボタン設定
+        for (int i = 0; i < 3; i++)
+        {
+            int index = i;
+            replayButtons[i].onClick.RemoveAllListeners();
+            replayButtons[i].onClick.AddListener(() => PlaySound(index));
+        }
+
+        ShowResultScreen();
     }
 
     public void OnNextButton()
     {
         currentQuizIndex++;
-        if (currentQuizIndex >= quizList.Length)
+        if (currentQuizIndex >= randomizedQuizzes.Count)
         {
             Debug.Log("全問終了！");
+            // TODO: 終了処理をここに追加（例：再スタート、スコア表示など）
             return;
         }
 
@@ -118,14 +153,5 @@ public class QuizManager : MonoBehaviour
     {
         quizScreen.SetActive(false);
         resultScreen.SetActive(true);
-    }
-
-    void SetButtonColor(Button btn, Color color)
-    {
-        var colors = btn.colors;
-        colors.normalColor = color;
-        colors.selectedColor = color;
-        colors.highlightedColor = color;
-        btn.colors = colors;
     }
 }
