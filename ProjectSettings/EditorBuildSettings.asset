@@ -5,9 +5,24 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Projects/Title/Scenes/Title.unity
+    guid: c2ba56c55ae279949b8cb00e16281f59
+  - enabled: 1
+    path: Assets/Projects/Home/Scenes/Home.unity
+    guid: 88b426007744dfb468c78c4641b4dad7
+  - enabled: 1
+    path: Assets/Projects/MiniGames/StopwatchGame/Scenes/StopwatchScene.unity
+    guid: da6b525d202e2284f9527a43355721a0
+  - enabled: 1
+    path: Assets/Projects/MiniGames/StopwatchGame/Scenes/StopwatchGameScene.unity
+    guid: e6e5d82f97393fe4b98b19374d9caffe
+  - enabled: 1
+    path: Assets/Projects/MiniGames/WakamonoKotoba/Scenes/WakamonoKotoba.unity
+    guid: 36a3f249079f1f443acdd6821170ce85
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

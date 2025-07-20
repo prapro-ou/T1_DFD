@@ -130,6 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 312398272810602391}
+  - component: {fileID: 5681736409214792320}
   m_Layer: 5
   m_Name: System_UI
   m_TagString: Untagged
@@ -158,6 +159,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5681736409214792320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5253911729492816842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2826bf738ac0827439a21be58d9f757b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backButton: {fileID: 8713989984837835271}
+  settingsButton: {fileID: 6326717008540287458}
 --- !u!1 &7037269859304223474
 GameObject:
   m_ObjectHideFlags: 0
