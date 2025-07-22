@@ -40,6 +40,7 @@ public class QuizManager : MonoBehaviour
     private List<Quiz> randomizedQuizzes = new List<Quiz>();
     private int currentQuizIndex = 0;
     private int selectedIndex = -1;
+    private int correctCount = 0; // ✅ 正解数カウント
 
     void Start()
     {
@@ -59,43 +60,45 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-void SetupQuiz()
-{
-    selectedIndex = -1;
-    confirmButton.interactable = false;
-
-    // 🎯 ここで選択肢ボタンの色をリセットする（Image.color と Button.colors 両方）
-    for (int i = 0; i < answerButtons.Length; i++)
+    void SetupQuiz()
     {
-        var btn = answerButtons[i];
+        selectedIndex = -1;
+        confirmButton.interactable = false;
 
-        // Image の色をリセット
-        Image img = btn.GetComponent<Image>();
-        img.color = Color.white;
+           // ✅ 再生ボタンを戻す
+        foreach (Button btn in replayButtons)
+        { 
+        btn.gameObject.SetActive(true);
+        }
 
-        // 必要であれば Button.colors もリセット
-        var colors = btn.colors;
-        colors.normalColor = Color.white;
-        btn.colors = colors;
+        // ボタン色リセット
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            var btn = answerButtons[i];
+            Image img = btn.GetComponent<Image>();
+            img.color = Color.white;
+
+            var colors = btn.colors;
+            colors.normalColor = Color.white;
+            btn.colors = colors;
+        }
+
+        var quiz = randomizedQuizzes[currentQuizIndex];
+        promptText.text = quiz.prompt;
+
+        for (int i = 0; i < 3; i++)
+        {
+            int index = i;
+            playButtons[i].onClick.RemoveAllListeners();
+            playButtons[i].onClick.AddListener(() => PlaySound(index));
+
+            answerButtons[i].onClick.RemoveAllListeners();
+            answerButtons[i].onClick.AddListener(() => OnSelectAnswer(index));
+        }
+
+        confirmButton.onClick.RemoveAllListeners();
+        confirmButton.onClick.AddListener(() => CheckAnswer());
     }
-
-    var quiz = randomizedQuizzes[currentQuizIndex];
-    promptText.text = quiz.prompt;
-
-    // 問題画面：音声再生と選択肢のボタン設定
-    for (int i = 0; i < 3; i++)
-    {
-        int index = i;
-        playButtons[i].onClick.RemoveAllListeners();
-        playButtons[i].onClick.AddListener(() => PlaySound(index));
-
-        answerButtons[i].onClick.RemoveAllListeners();
-        answerButtons[i].onClick.AddListener(() => OnSelectAnswer(index));
-    }
-
-    confirmButton.onClick.RemoveAllListeners();
-    confirmButton.onClick.AddListener(() => CheckAnswer());
-}
 
     void PlaySound(int index)
     {
@@ -103,28 +106,30 @@ void SetupQuiz()
         soundManager.PlaySound(quiz.options[index]);
     }
 
-void OnSelectAnswer(int index)
-{
-    selectedIndex = index;
-    confirmButton.interactable = true;
-
-    // 全てのボタンの色を元に戻す
-    for (int i = 0; i < answerButtons.Length; i++)
+    void OnSelectAnswer(int index)
     {
-        Image img = answerButtons[i].GetComponent<Image>();
-        img.color = Color.white;  // 元の色
+        selectedIndex = index;
+        confirmButton.interactable = true;
+
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            Image img = answerButtons[i].GetComponent<Image>();
+            img.color = Color.white;
+        }
+
+        Image selectedImg = answerButtons[index].GetComponent<Image>();
+        selectedImg.color = Color.yellow;
     }
-
-    // 選択したボタンだけ色を変更
-    Image selectedImg = answerButtons[index].GetComponent<Image>();
-    selectedImg.color = Color.yellow;  // 強調色
-}
-
 
     void CheckAnswer()
     {
         var quiz = randomizedQuizzes[currentQuizIndex];
         bool isCorrect = (quiz.correctIndex == selectedIndex);
+
+        if (isCorrect)
+        {
+            correctCount++; // ✅ 正解数カウント
+        }
 
         resultTitleText.text = isCorrect
             ? "<color=#FF0000>正解！</color>"
@@ -137,7 +142,6 @@ void OnSelectAnswer(int index)
 
         soundManager.PlaySound(isCorrect ? correctSound : wrongSound);
 
-        // 解説画面のレプレイボタン設定
         for (int i = 0; i < 3; i++)
         {
             int index = i;
@@ -148,19 +152,31 @@ void OnSelectAnswer(int index)
         ShowResultScreen();
     }
 
-    public void OnNextButton()
+ public void OnNextButton()
+{
+    currentQuizIndex++;
+
+    if (currentQuizIndex >= randomizedQuizzes.Count)
     {
-        currentQuizIndex++;
-        if (currentQuizIndex >= randomizedQuizzes.Count)
+        // ✅ 全問終了：最終結果を表示
+        resultTitleText.text = $"<size=150%><color=green>全{randomizedQuizzes.Count}問中 {correctCount}問正解！</color></size>";
+        explanationText.text = "おつかれさまでした！";
+
+        nextButton.gameObject.SetActive(false); // 「次へ」非表示
+
+        // ✅ 再生ボタンすべて非表示
+        foreach (Button btn in replayButtons)
         {
-            Debug.Log("全問終了！");
-            // TODO: 終了処理をここに追加（例：再スタート、スコア表示など）
-            return;
+            btn.gameObject.SetActive(false);
         }
 
-        ShowQuizScreen();
-        SetupQuiz();
+        return;
     }
+
+    // 通常の問題へ
+    ShowQuizScreen();
+    SetupQuiz();
+}
 
     void ShowQuizScreen()
     {
@@ -172,5 +188,6 @@ void OnSelectAnswer(int index)
     {
         quizScreen.SetActive(false);
         resultScreen.SetActive(true);
+        nextButton.gameObject.SetActive(true); // 次ボタンは毎回表示
     }
 }
