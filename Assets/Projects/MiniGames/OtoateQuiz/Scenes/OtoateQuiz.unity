@@ -2635,10 +2635,19 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 50133ee879fc19749a94f801fc4b9f50, type: 3}
     - {fileID: 8300000, guid: a4e22164a6db97245a730e67a5c264d6, type: 3}
     - {fileID: 8300000, guid: 18deaa898ce496d4b82b534b33e16dbf, type: 3}
-    correctIndex: 1
+    correctIndex: 2
     explanationA: "A\u306F\u30B9\u30B7\u30ED\u30FC"
     explanationB: "B\u306F\u306F\u307E\u5BFF\u53F8"
     explanationC: "C\u304C\u6B63\u89E3\uFF01"
+  - prompt: "\u30BB\u30D6\u30F3\u30A4\u30EC\u30D6\u30F3\u306E\u5165\u5E97\u97F3\u306F\u3069\u308C\uFF1F"
+    options:
+    - {fileID: 8300000, guid: 731bc189154ddba49b843a8027e7eddf, type: 3}
+    - {fileID: 8300000, guid: 5012c7cf7dd816b49ba440f5b3f26f07, type: 3}
+    - {fileID: 8300000, guid: eb53772a24d238747a913194355f6a5e, type: 3}
+    correctIndex: 0
+    explanationA: "A\u304C\u6B63\u89E3\uFF01"
+    explanationB: "B\u306F\u30ED\u30FC\u30BD\u30F3"
+    explanationC: "C\u306F\u30D5\u30A1\u30DF\u30DE"
   quizScreen: {fileID: 1728131170}
   promptText: {fileID: 2029442281}
   playButtons:

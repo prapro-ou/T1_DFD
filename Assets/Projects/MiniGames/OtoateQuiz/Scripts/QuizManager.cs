@@ -59,28 +59,43 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    void SetupQuiz()
+void SetupQuiz()
+{
+    selectedIndex = -1;
+    confirmButton.interactable = false;
+
+    // 🎯 ここで選択肢ボタンの色をリセットする（Image.color と Button.colors 両方）
+    for (int i = 0; i < answerButtons.Length; i++)
     {
-        selectedIndex = -1;
-        confirmButton.interactable = false;
+        var btn = answerButtons[i];
 
-        var quiz = randomizedQuizzes[currentQuizIndex];
-        promptText.text = quiz.prompt;
+        // Image の色をリセット
+        Image img = btn.GetComponent<Image>();
+        img.color = Color.white;
 
-        // 問題画面：音声再生と選択肢のボタン設定
-        for (int i = 0; i < 3; i++)
-        {
-            int index = i;
-            playButtons[i].onClick.RemoveAllListeners();
-            playButtons[i].onClick.AddListener(() => PlaySound(index));
-
-            answerButtons[i].onClick.RemoveAllListeners();
-            answerButtons[i].onClick.AddListener(() => OnSelectAnswer(index));
-        }
-
-        confirmButton.onClick.RemoveAllListeners();
-        confirmButton.onClick.AddListener(() => CheckAnswer());
+        // 必要であれば Button.colors もリセット
+        var colors = btn.colors;
+        colors.normalColor = Color.white;
+        btn.colors = colors;
     }
+
+    var quiz = randomizedQuizzes[currentQuizIndex];
+    promptText.text = quiz.prompt;
+
+    // 問題画面：音声再生と選択肢のボタン設定
+    for (int i = 0; i < 3; i++)
+    {
+        int index = i;
+        playButtons[i].onClick.RemoveAllListeners();
+        playButtons[i].onClick.AddListener(() => PlaySound(index));
+
+        answerButtons[i].onClick.RemoveAllListeners();
+        answerButtons[i].onClick.AddListener(() => OnSelectAnswer(index));
+    }
+
+    confirmButton.onClick.RemoveAllListeners();
+    confirmButton.onClick.AddListener(() => CheckAnswer());
+}
 
     void PlaySound(int index)
     {
@@ -88,19 +103,23 @@ public class QuizManager : MonoBehaviour
         soundManager.PlaySound(quiz.options[index]);
     }
 
-    void OnSelectAnswer(int index)
-    {
-        selectedIndex = index;
-        confirmButton.interactable = true;
+void OnSelectAnswer(int index)
+{
+    selectedIndex = index;
+    confirmButton.interactable = true;
 
-        // 選択中のボタンを視覚的に強調（例: 色変更）
-        for (int i = 0; i < 3; i++)
-        {
-            ColorBlock cb = answerButtons[i].colors;
-            cb.normalColor = (i == index) ? Color.yellow : Color.white;
-            answerButtons[i].colors = cb;
-        }
+    // 全てのボタンの色を元に戻す
+    for (int i = 0; i < answerButtons.Length; i++)
+    {
+        Image img = answerButtons[i].GetComponent<Image>();
+        img.color = Color.white;  // 元の色
     }
+
+    // 選択したボタンだけ色を変更
+    Image selectedImg = answerButtons[index].GetComponent<Image>();
+    selectedImg.color = Color.yellow;  // 強調色
+}
+
 
     void CheckAnswer()
     {
