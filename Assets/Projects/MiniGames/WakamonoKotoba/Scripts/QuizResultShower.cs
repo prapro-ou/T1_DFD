@@ -18,9 +18,13 @@ namespace Projects.MiniGames.WakamonoKotoba
 
         }
 
-        public void showResult()
+        public void showResult(int correctCount, int quizCount)
         {
+            this.correctCount = correctCount;
+            this.quizCount = quizCount;
             resultText.text = "正解数: " + correctCount + " / " + quizCount;
+            Debug.Log(resultText.text);
+            Debug.Log($"Quiz Result: {correctCount} / {quizCount}");
         }
         // Update is called once per frame
         void Update()

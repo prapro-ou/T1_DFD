@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Projects.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,8 @@ namespace Projects.MiniGames.WakamonoKotoba
 
         [SerializeField] private GameObject quizResultShower;
         [SerializeField] private GameObject popupPanel;
+        
+        [SerializeField] private PlayerData playerData;
 
         private List<QuizQuestion> quizList;
 
@@ -97,6 +100,19 @@ namespace Projects.MiniGames.WakamonoKotoba
             choiceText3.text = quizQuestion.choices[2];
         }
 
+        private void EndQuiz()
+        {
+            isGameActive = false; // ゲームを終了状態にする
+            quizResultShower.SetActive(true);
+            quizResultShower.GetComponent<QuizResultShower>().showResult(correctCount, answeredQuizList.Count);
+
+            // [TODO] ポイントは後で調整
+            playerData.AddPoint(correctCount * 10); // 正解数に応じてポイントを加算
+            // クイズが終了したことをログに出力
+            Debug.Log("クイズが終了しました。正解数: " + correctCount);
+            
+        }
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -123,6 +139,8 @@ namespace Projects.MiniGames.WakamonoKotoba
 
             collectPanel.SetActive(false);
             incollectPanel.SetActive(false);
+            
+            quizResultShower.SetActive(false);
         }
         // Update is called once per frame
         void Update()
@@ -142,13 +160,7 @@ namespace Projects.MiniGames.WakamonoKotoba
                 }
                 else if (quizCount == 0)
                 {
-                    isGameActive = false; // ゲームを終了状態にする
-                    Instantiate(quizResultShower, popupPanel.transform);
-                    quizResultShower.GetComponent<QuizResultShower>().correctCount = correctCount;
-                    quizResultShower.GetComponent<QuizResultShower>().quizCount = answeredQuizList.Count;
-                    quizResultShower.GetComponent<QuizResultShower>().showResult();
-                    // クイズが終了したことをログに出力
-                    Debug.Log("クイズが終了しました。正解数: " + correctCount);
+                    EndQuiz();
                 }
                 clickTime = Time.time;
 
