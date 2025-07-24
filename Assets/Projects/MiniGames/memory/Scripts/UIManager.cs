@@ -11,14 +11,16 @@ namespace TaikoGame
         [SerializeField] private GameObject titlePanel;
         [SerializeField] private GameObject gamePanel;
         [SerializeField] private GameObject aftergamePanel;
-        [SerializeField] private GameObject resultPanel;
+        [SerializeField] private GameObject resultgoodPanel;
+        [SerializeField] private GameObject resultbadPanel;
 
         public void ShowTitle()
         {
             titlePanel.SetActive(true);
             gamePanel.SetActive(false);
             aftergamePanel.SetActive(false);
-            resultPanel.SetActive(false);
+            resultgoodPanel.SetActive(false);
+            resultbadPanel.SetActive(false);
         }
 
         public void ShowGame()
@@ -26,7 +28,8 @@ namespace TaikoGame
             titlePanel.SetActive(false);
             gamePanel.SetActive(true);
             aftergamePanel.SetActive(false);
-            resultPanel.SetActive(false);
+            resultgoodPanel.SetActive(false);
+            resultbadPanel.SetActive(false);
         }
 
         public void ShowInputAnswer()
@@ -34,15 +37,26 @@ namespace TaikoGame
             titlePanel.SetActive(false);
             gamePanel.SetActive(false);
             aftergamePanel.SetActive(true);
-            resultPanel.SetActive(false);
+            resultgoodPanel.SetActive(false);
+            resultbadPanel.SetActive(false);
         }
 
-        public void ShowResult()
+        public void ShowGoodResult()
         {
             titlePanel.SetActive(false);
             gamePanel.SetActive(false);
             aftergamePanel.SetActive(false);
-            resultPanel.SetActive(true);
+            resultgoodPanel.SetActive(true);
+            resultbadPanel.SetActive(false);
+        }
+
+        public void ShowBadResult()
+        {
+            titlePanel.SetActive(false);
+            gamePanel.SetActive(false);
+            aftergamePanel.SetActive(false);
+            resultgoodPanel.SetActive(false);
+            resultbadPanel.SetActive(true);
         }
     }
 }
