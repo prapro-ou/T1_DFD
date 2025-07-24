@@ -1,74 +1,95 @@
 using System;
+using Projects.Core;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Gacha : MonoBehaviour
+namespace Projects.Gacha
 {
-    public GachaData inputJson = new GachaData();
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Gacha : MonoBehaviour
     {
-        string inputString = Resources.Load<TextAsset>("GachaContents").ToString();
-        inputJson = JsonUtility.FromJson<GachaData>(inputString);
-    }
+        private GachaData inputJson = new GachaData();
+        [SerializeField] private PlayerData playerData;
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void Roll(int num)
-    {
-        int rateSum = 0;
-        int rarityResult = 0;
-        int contentResult = 0;
-
-        for (int i = 0; i < inputJson.rate.Length; i++)
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
         {
-            rateSum += inputJson.rate[i];
+            string inputString = Resources.Load<TextAsset>("GachaContents").ToString();
+            inputJson = JsonUtility.FromJson<GachaData>(inputString);
+
+            Debug.Log("Gacha data loaded successfully.");
+
+            //　ポイントの参照方法のサンプル(yokoi)
+            Debug.Log("今のポイント: " + playerData.point);
         }
-        int rarityValue = (int)(Random.value * rateSum) + 1;
 
-        rateSum = 0;
-        for (int i = 0; i < inputJson.rate.Length; i++)
+        // Update is called once per frame
+        void Update()
         {
-            if (rarityValue > rateSum)
+
+        }
+
+        public void Roll(int num)
+        {
+            int rateSum = 0;
+            int rarityResult = 0;
+            int contentResult = 0;
+
+            //[TODO]　ここでポイントの消費処理を行う
+            if (playerData.point < 100)
             {
-                rarityResult = i;
+                Debug.Log("ポイントが足りません。");
+                return;
             }
-            rateSum += inputJson.rate[i];
-        }
+            
+            playerData.point -= 100; // ポイントを消費
+            Debug.Log("ポイントを消費しました。残りポイント: " + playerData.point);
 
-        switch (rarityResult) { 
-            case 0:
-                contentResult = Random.Range(0, inputJson.contents.rarity0.Length);
-                Debug.Log("Rarity 0: " + inputJson.contents.rarity0[Random.Range(0, inputJson.contents.rarity0.Length)]);
-                break;
-            case 1:
-                contentResult = Random.Range(0, inputJson.contents.rarity1.Length);
-                Debug.Log("Rarity 1: " + inputJson.contents.rarity1[Random.Range(0, inputJson.contents.rarity1.Length)]);
-                break;
-            case 2:
-                contentResult = Random.Range(0, inputJson.contents.rarity2.Length);
-                Debug.Log("Rarity 2: " + inputJson.contents.rarity2[Random.Range(0, inputJson.contents.rarity2.Length)]);
-                break;
+            for (int i = 0; i < inputJson.rate.Length; i++)
+            {
+                rateSum += inputJson.rate[i];
+            }
+            int rarityValue = (int)(Random.value * rateSum) + 1;
+
+            rateSum = 0;
+            for (int i = 0; i < inputJson.rate.Length; i++)
+            {
+                if (rarityValue > rateSum)
+                {
+                    rarityResult = i;
+                }
+                rateSum += inputJson.rate[i];
+            }
+
+            switch (rarityResult)
+            {
+                case 0:
+                    contentResult = Random.Range(0, inputJson.contents.rarity0.Length);
+                    Debug.Log("Rarity 0: " + inputJson.contents.rarity0[Random.Range(0, inputJson.contents.rarity0.Length)]);
+                    break;
+                case 1:
+                    contentResult = Random.Range(0, inputJson.contents.rarity1.Length);
+                    Debug.Log("Rarity 1: " + inputJson.contents.rarity1[Random.Range(0, inputJson.contents.rarity1.Length)]);
+                    break;
+                case 2:
+                    contentResult = Random.Range(0, inputJson.contents.rarity2.Length);
+                    Debug.Log("Rarity 2: " + inputJson.contents.rarity2[Random.Range(0, inputJson.contents.rarity2.Length)]);
+                    break;
+            }
         }
     }
-}
 
-[Serializable]
-public class GachaData
-{
-    public int[] rate;
-    public GachaContents contents;
-}
+    [Serializable]
+    public class GachaData
+    {
+        public int[] rate;
+        public GachaContents contents;
+    }
 
-[Serializable]
-public class GachaContents
-{
-    public string[] rarity0;
-    public string[] rarity1;
-    public string[] rarity2;
+    [Serializable]
+    public class GachaContents
+    {
+        public string[] rarity0;
+        public string[] rarity1;
+        public string[] rarity2;
+    }
 }
