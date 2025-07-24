@@ -2,7 +2,7 @@ using UnityEngine;
 using Projects.Core;
 using Projects.Utils;
 
-namespace Projects.Home
+namespace Projects.Utils
 {
     /// <summary>
     /// シーン遷移ボタンのスクリプト
