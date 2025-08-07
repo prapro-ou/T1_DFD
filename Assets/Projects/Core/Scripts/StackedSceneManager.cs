@@ -17,8 +17,13 @@ namespace Projects.Core
         None = 0, // 未設定状態
         Home,
         Title,
+
+        Gacha, // ガチャのシーン
+        // miniゲームのシーン
         StopwatchGame,
-        WakamonoKotoba
+        WakamonoKotoba,
+        OtoateQuiz,
+        MemoryGame,
     }
 
     public static class SceneHelper
@@ -32,8 +37,11 @@ namespace Projects.Core
             {
                 "Home" => GameScenes.Home,
                 "Title" => GameScenes.Title,
+                "Gacha" => GameScenes.Gacha,
                 "StopwatchScene" => GameScenes.StopwatchGame,
                 "WakamonoKotoba" => GameScenes.WakamonoKotoba,
+                "OtoateQuiz" => GameScenes.OtoateQuiz,
+                "MemoryGame" => GameScenes.MemoryGame,
                 _ => GameScenes.None,
             };
         }
@@ -47,8 +55,11 @@ namespace Projects.Core
             {
                 GameScenes.Home => "Home",
                 GameScenes.Title => "Title",
+                GameScenes.Gacha => "Gacha",
                 GameScenes.StopwatchGame => "StopwatchScene",
                 GameScenes.WakamonoKotoba => "WakamonoKotoba",
+                GameScenes.OtoateQuiz => "OtoateQuiz",
+                GameScenes.MemoryGame => "MemoryGame",
                 _ => string.Empty,
             };
         }
