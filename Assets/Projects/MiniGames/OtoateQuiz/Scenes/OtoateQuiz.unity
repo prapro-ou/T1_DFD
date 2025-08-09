@@ -2876,15 +2876,6 @@ MonoBehaviour:
     explanationA: "A\u306F\u30B0\u30E9\u30B9\u3092\u5408\u308F\u305B\u308B\u97F3"
     explanationB: "B\u306F\u5263\u3092\u9798\u306B\u3057\u307E\u3046\u97F3"
     explanationC: "C\u304C\u6B63\u89E3\uFF01"
-  - prompt: "\u30CB\u30F3\u30C6\u30F3\u30C9\u30FCDS\u304B\u3089\u6D41\u308C\u308B\u97F3\u306F\u3069\u308C\uFF1F"
-    options:
-    - {fileID: 8300000, guid: 5bac5ce29e532224f98d7432392cd3e7, type: 3}
-    - {fileID: 8300000, guid: f82e02691ad87884f835538957cb5e37, type: 3}
-    - {fileID: 8300000, guid: f568a6f01fcdb5647ba6e83dcb25e4e0, type: 3}
-    correctIndex: 1
-    explanationA: "A\u306FNintendo Switch"
-    explanationB: "B\u304C\u6B63\u89E3\uFF01"
-    explanationC: "C\u306FWii"
   - prompt: "\u99C5\u306E\u6539\u672D\u3067\u805E\u3053\u3048\u3066\u304F\u308B\u97F3\u306F\u3069\u308C\uFF1F"
     options:
     - {fileID: 8300000, guid: 9c5948c376cf7a34cbf22488b73ab287, type: 3}
@@ -2930,6 +2921,15 @@ MonoBehaviour:
     explanationA: "A\u304C\u6B63\u89E3\uFF01"
     explanationB: "B\u306F\u30ED\u30FC\u30BD\u30F3"
     explanationC: "C\u306F\u30D5\u30A1\u30DF\u30DE"
+  - prompt: "\u4FE1\u53F7\u304B\u3089\u805E\u3053\u3048\u308B\u97F3\u306F\u3069\u308C\uFF1F"
+    options:
+    - {fileID: 8300000, guid: 004b733d292cb4e4498a9252dd130b22, type: 3}
+    - {fileID: 8300000, guid: e1e55f8113453ef478a86abf7630e31a, type: 3}
+    - {fileID: 8300000, guid: 926177782f84658488d50c44e1a4fedd, type: 3}
+    correctIndex: 1
+    explanationA: "A\u306F\u6642\u5831"
+    explanationB: "B\u304C\u6B63\u89E3\uFF01"
+    explanationC: "C\u306F\u30E2\u30FC\u30EB\u30B9\u4FE1\u53F7"
   quizScreen: {fileID: 1195775857}
   promptText: {fileID: 2029442281}
   playButtons:
