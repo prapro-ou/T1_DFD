@@ -43,11 +43,23 @@ public class QuizManager : MonoBehaviour
     private int correctCount = 0; // ✅ 正解数カウント
 
     void Start()
-    {
-        GenerateRandomQuizzes();
-        ShowQuizScreen();
-        SetupQuiz();
-    }
+{
+    quizScreen.SetActive(false);
+    resultScreen.SetActive(false);
+}
+
+
+    public void StartQuiz()
+{
+    currentQuizIndex = 0;
+    correctCount = 0;
+    selectedIndex = -1;
+    randomizedQuizzes.Clear();
+
+    GenerateRandomQuizzes();
+    ShowQuizScreen();
+    SetupQuiz();
+}
 
     void GenerateRandomQuizzes()
     {
@@ -182,6 +194,7 @@ public class QuizManager : MonoBehaviour
     {
         quizScreen.SetActive(true);
         resultScreen.SetActive(false);
+
     }
 
     void ShowResultScreen()
@@ -190,4 +203,4 @@ public class QuizManager : MonoBehaviour
         resultScreen.SetActive(true);
         nextButton.gameObject.SetActive(true); // 次ボタンは毎回表示
     }
-}
+} 
