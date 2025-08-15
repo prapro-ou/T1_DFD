@@ -10,7 +10,7 @@ namespace TaikoGame
     {
         public UIManager uiManager;   // インスペクタで割り当て
         public GameObject suimarikoPrefab; // 水マリコのプレハブ
-
+        public GameObject[] obstaclePrefabs;  // 複数の邪魔者を配列で登録
         public int minSuimariko = 10;      // 表示する水マリコの最小数（10～20個に調整）
         public int maxSuimariko = 20;     // 表示する水マリコの最大数（10～20個に調整）
         public float displayTime = 3.0f;  // 水マリコが表示される時間 (秒)
