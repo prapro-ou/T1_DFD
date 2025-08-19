@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8fb5f55c714bacb42ae393b0ffb4c13e, type: 2}
-  m_sharedMaterial: {fileID: -3812268614232951090, guid: 8fb5f55c714bacb42ae393b0ffb4c13e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
+  m_sharedMaterial: {fileID: 1848968109756024846, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.15
+  m_fontSize: 64.45
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -497,8 +497,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8fb5f55c714bacb42ae393b0ffb4c13e, type: 2}
-  m_sharedMaterial: {fileID: -3812268614232951090, guid: 8fb5f55c714bacb42ae393b0ffb4c13e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
+  m_sharedMaterial: {fileID: 1848968109756024846, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.15
+  m_fontSize: 64.45
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1086,8 +1086,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8fb5f55c714bacb42ae393b0ffb4c13e, type: 2}
-  m_sharedMaterial: {fileID: -3812268614232951090, guid: 8fb5f55c714bacb42ae393b0ffb4c13e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
+  m_sharedMaterial: {fileID: 1848968109756024846, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.15
+  m_fontSize: 64.45
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
