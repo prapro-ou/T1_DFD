@@ -10,7 +10,8 @@ namespace TaikoGame
     {
         public UIManager uiManager;   // インスペクタで割り当て
         public GameObject suimarikoPrefab; // 水マリコのプレハブ
-        public GameObject[] obstaclePrefabs;  // 複数の邪魔者を配列で登録
+        public GameObject bouncingEnemyPrefab; // 跳ねる動きの邪魔者
+        public GameObject zigzagEnemyPrefab; // ジグザグ動きの邪魔者
         public int minSuimariko = 10;      // 表示する水マリコの最小数（10～20個に調整）
         public int maxSuimariko = 20;     // 表示する水マリコの最大数（10～20個に調整）
         public float displayTime = 3.0f;  // 水マリコが表示される時間 (秒)
@@ -80,6 +81,8 @@ namespace TaikoGame
         IEnumerator GameSequence()
         {
             // 水マリコ表示フェーズ
+            Debug.Log(isGamePlaying);
+            // StartCoroutine(SpawnEnemies());
             yield return StartCoroutine(SpawnSuimarikoRoutine());
             yield return new WaitForSeconds(displayTime); // 指定時間表示
 
@@ -106,7 +109,7 @@ namespace TaikoGame
             answerInputField.interactable = true;
             submitButton.onClick.RemoveAllListeners(); // ★これが重要
             submitButton.onClick.AddListener(Result);
-
+            
         }
 
         // 水マリコを生成するコルーチン
@@ -142,12 +145,57 @@ namespace TaikoGame
 
                 Vector3 spawnPos = new Vector3(currentSpawnX, randomY, 0);
 
+                // 水マリコ生成
                 var obj = Instantiate(suimarikoPrefab, CatHouse);
                 obj.transform.localPosition = spawnPos;
 
+                // // ここから邪魔者を追加（ランダムで出す）
+                // if (Random.value < 0.8f) // 80%の確率で跳ねる邪魔者
+                // {
+                //     var enemy = Instantiate(bouncingEnemyPrefab, CatHouse);
+                //     enemy.transform.localPosition = spawnPos + Vector3.up * 2;
+                // }
+                // if (Random.value < 0.8f) // 80%の確率でジグザグ邪魔者
+                // {
+                //     var enemy = Instantiate(zigzagEnemyPrefab, CatHouse);
+                //     enemy.transform.localPosition = spawnPos + Vector3.up * 2;
+                // }
+
+                // 跳ねる敵（必ず出す）
+                Vector3 bouncingPos = spawnPos + Vector3.up * 1f; // 少し上にずらす
+                var bouncingEnemy = Instantiate(bouncingEnemyPrefab, bouncingPos, Quaternion.identity);
+                bouncingEnemy.transform.SetParent(CatHouse, true);
+
+                // ジグザグ敵（必ず出す）
+                Vector3 zigzagPos = new Vector3(screenLeftEdge, spawnPos.y + 1.5f, 0f);
+                var zigzagEnemy = Instantiate(zigzagEnemyPrefab, zigzagPos, Quaternion.identity);
+                zigzagEnemy.transform.SetParent(CatHouse, true);
+                // Debug.Log("zigzag");
+                
                 yield return new WaitForSeconds(suimarikoSpawnInterval);
             }
         }
+
+        // IEnumerator SpawnEnemies()
+        // {
+        //     while (isGamePlaying)
+        //     {
+        //         // // 1. バウンドする敵を出す
+        //         // Instantiate(bouncingEnemyPrefab, new Vector3(10, 0, 0), Quaternion.identity);
+
+        //         // // 2. ジグザグする敵を出す
+        //         // Instantiate(zigzagEnemyPrefab, new Vector3(10, 2, 0), Quaternion.identity);
+
+        //         var enemy1 = Instantiate(bouncingEnemyPrefab, CatHouse);
+        //         enemy1.transform.localPosition = new Vector3(10, 0, 0);
+
+        //         var enemy2 = Instantiate(zigzagEnemyPrefab, CatHouse);
+        //         enemy2.transform.localPosition = new Vector3(10, 2, 0);
+        //         // 次の出現まで待つ（調整可能）
+        //         yield return new WaitForSeconds(3f);
+        //     }
+        // }
+
 
         // 現在表示されている水マリコを全て消す（念のための処理、通常はSuimarikoFlowMovementで消える）
         void ClearSuimariko()
