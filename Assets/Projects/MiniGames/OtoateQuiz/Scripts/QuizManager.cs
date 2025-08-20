@@ -36,6 +36,9 @@ public class QuizManager : MonoBehaviour
     public SoundManager soundManager;
     public AudioClip correctSound;
     public AudioClip wrongSound;
+    public AudioClip goodResultSound;
+    public AudioClip badResultSound;
+
 
     private List<Quiz> randomizedQuizzes = new List<Quiz>();
     private int currentQuizIndex = 0;
@@ -182,7 +185,16 @@ public class QuizManager : MonoBehaviour
             btn.gameObject.SetActive(false);
         }
 
-        return;
+        if (correctCount >= 3)
+        {
+            soundManager.PlaySound(goodResultSound); // 3問以上ならお祝い音
+        }
+        else
+        {
+            soundManager.PlaySound(badResultSound);     // それ以外は普通の音
+        }
+
+            return;
     }
 
     // 通常の問題へ
