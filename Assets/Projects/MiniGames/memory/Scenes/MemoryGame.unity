@@ -493,6 +493,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1461282607}
   suimarikoPrefab: {fileID: 4357222002070568139, guid: 8606522765ba1544193b263a12beedd7, type: 3}
+  bouncingEnemyPrefab: {fileID: 5220689673197581258, guid: b0ba599fd290c9c42b8e4895c67fae7c, type: 3}
+  zigzagEnemyPrefab: {fileID: 3278646276706272478, guid: a368be4358a4c654a9df153d94d506be, type: 3}
   minSuimariko: 5
   maxSuimariko: 15
   displayTime: 3
