@@ -454,9 +454,33 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 60.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4440498134197529785, guid: 2f5d737698b7c6949821e518c2fea397, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
+    - target: {fileID: 4440498134197529785, guid: 2f5d737698b7c6949821e518c2fea397, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1848968109756024846, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
+    - target: {fileID: 4440498134197529785, guid: 2f5d737698b7c6949821e518c2fea397, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5253911729492816842, guid: 2f5d737698b7c6949821e518c2fea397, type: 3}
       propertyPath: m_Name
       value: System_UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6394399202716138045, guid: 2f5d737698b7c6949821e518c2fea397, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
+    - target: {fileID: 6394399202716138045, guid: 2f5d737698b7c6949821e518c2fea397, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1848968109756024846, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
+    - target: {fileID: 6394399202716138045, guid: 2f5d737698b7c6949821e518c2fea397, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -777,8 +801,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30B9\u30BF\u30FC\u30C8"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8fb5f55c714bacb42ae393b0ffb4c13e, type: 2}
-  m_sharedMaterial: {fileID: -3812268614232951090, guid: 8fb5f55c714bacb42ae393b0ffb4c13e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
+  m_sharedMaterial: {fileID: 1848968109756024846, guid: df208b02ff8a5cd42afece279913dc36, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
