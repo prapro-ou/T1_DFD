@@ -15,6 +15,9 @@ namespace Projects.MiniGames.WakamonoKotoba
         [SerializeField] private Button choicePanel3;
         [SerializeField] private GameObject collectPanel;
         [SerializeField] private GameObject incollectPanel;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip correctSound;
+        [SerializeField] private AudioClip incorrectSound;
         public int quizCount = 5; // クイズの数
         
         public int correctCount = 0; // 正解数
@@ -80,12 +83,15 @@ namespace Projects.MiniGames.WakamonoKotoba
                 collectPanel.SetActive(true);
                 incollectPanel.SetActive(false);
                 correctCount++;
+                audioSource.PlayOneShot(correctSound);
                 Debug.Log("正解の選択肢: " + currentQuizQuestion.choices[index]);
             }
             else
             {
+                // 不正解の処理
                 collectPanel.SetActive(false);
                 incollectPanel.SetActive(true);
+                audioSource.PlayOneShot(incorrectSound);
                 Debug.Log("不正解です。");
             }
             isShowingResult = true;
