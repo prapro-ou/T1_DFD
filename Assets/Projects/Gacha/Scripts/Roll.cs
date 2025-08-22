@@ -10,15 +10,14 @@ namespace Projects.Gacha
 {
     public class Gacha : MonoBehaviour
     {
-        [SerializeField] private PlayerData playerData; //ポイント
-        private GachaData inputJson = new GachaData(); //ガチャデータ
-        private ClothingItems[] clothingItems = new ClothingItems[7]; //服装データ（種類の数+1を指定）
-        [SerializeField] private TextAsset clothingData;　//服装データのCSVファイル
-        [SerializeField] private Image[] clothingImage; //服装の画像
-        public TextMeshProUGUI clothingNameText; //服装名の表示用テキスト
-        public GameObject sample; //画面外から飛んでくる服が入った箱的なもの
+        [SerializeField] private PlayerData playerData; // プレイヤーデータ
+        private GachaData inputJson = new GachaData(); // ガチャデータ
+        private ClothingItems[] clothingItems = new ClothingItems[9]; // 服装データ（種類の数+1を指定）
+        [SerializeField] private TextAsset clothingData;　// 服装データのCSVファイル
+        public TextMeshProUGUI clothingNameText; // 服装名の表示用テキスト
+        public GameObject sample; // 画面外から飛んでくる服が入った箱的なもの
 
-        class ClothingItems //服装データのクラス
+        class ClothingItems // 服装データのクラス
         {
             public int id;
             public string name;
@@ -28,13 +27,26 @@ namespace Projects.Gacha
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            //ガチャデータの読み込み
-            string inputString = Resources.Load<TextAsset>("GachaContents").ToString();
+            // ガチャデータの読み込み
+            string inputString;
+            if (playerData.status[0] == 1) // 男性
+            {
+                inputString = Resources.Load<TextAsset>("GachaContents1").ToString();
+            }
+            else if (playerData.status[0] == 2) // 女性
+            {
+                inputString = Resources.Load<TextAsset>("GachaContents2").ToString();
+            }
+            else
+            {
+                Debug.LogError("性別が設定されていません。");
+                return;
+            }
             inputJson = JsonUtility.FromJson<GachaData>(inputString);
 
             Debug.Log("Gacha data loaded successfully.");
 
-            //服装データの読み込み
+            // 服装データの読み込み
             StringReader dataReader = new StringReader(clothingData.text);
             int i = 0;
             while (dataReader.Peek() != -1)
@@ -48,8 +60,8 @@ namespace Projects.Gacha
                 i++;
             }
 
-            //服装名を表示
-            clothingNameText.text = "Null"; //[TODO]現在の服装を表示するための初期値
+            // 服装名を表示
+            clothingNameText.text = "Null";
         }
 
         // Update is called once per frame
@@ -64,7 +76,7 @@ namespace Projects.Gacha
             int rarityResult = 0;
             int contentResult = 0;
 
-            //ここでポイントの消費処理を行う
+            // ここでポイントの消費処理を行う
             if (playerData.point < 100)
             {
                 Debug.Log("ポイントが足りません。");
@@ -74,13 +86,13 @@ namespace Projects.Gacha
             playerData.point -= 100; // ポイントを消費
             Debug.Log("ポイントを消費しました。残りポイント: " + playerData.point);
 
-            //全てのレアリティの合計値を計算
+            // 全てのレアリティの合計値を計算
             for (int i = 0; i < inputJson.rate.Length; i++)
             {
                 rateSum += inputJson.rate[i];
             }
 
-            //レアリティの決定
+            // レアリティの決定
             int rarityValue = (int)(Random.value * rateSum) + 1;
             rateSum = 0;
             rarityResult = -1;
@@ -93,7 +105,7 @@ namespace Projects.Gacha
                 rateSum += inputJson.rate[i];
             }
 
-            //レアリティに応じたコンテンツの決定
+            // レアリティに応じたコンテンツの決定
             switch (rarityResult)
             {
                 case 0:
@@ -112,8 +124,25 @@ namespace Projects.Gacha
             Debug.Log("Rarity " + rarityResult + ": " + contentResult);
             clothingNameText.text = clothingItems[contentResult].name;
 
-            //ガチャアニメーション
-            Instantiate(sample, new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+            // 手に入れた服を保存
+            if (clothingItems[contentResult].id == 1)
+            {
+                playerData.status[2] = contentResult;
+            }
+            else if (clothingItems[contentResult].id == 2)
+            {
+                playerData.status[3] = contentResult;
+            }
+            else
+            {
+                Debug.LogError("不明な服装ID: " + clothingItems[contentResult].id);
+            }
+
+            // ガチャアニメーション
+            //Instantiate(sample, new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+            GameObject instance = Instantiate(sample, new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+            Animation component = instance.GetComponent<Animation>();
+            component.SetClothingId(clothingItems[contentResult].id, contentResult);
         }
     }
 
