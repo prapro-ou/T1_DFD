@@ -10,6 +10,8 @@ namespace Project.Minigame.Stopwatch
 
         public TMP_Text timeText;
 
+        public TMP_Text goaltimeText;
+
         public TMP_Text ButtonText;
 
         private bool isClick = false;
@@ -26,6 +28,9 @@ namespace Project.Minigame.Stopwatch
         void Start()
         {
             ButtonText.text = "Start";
+
+            goaltimeText.text = (Random.Range(8, 20) + "秒で止めろ");
+
         }
 
         // Update is called once per frame
