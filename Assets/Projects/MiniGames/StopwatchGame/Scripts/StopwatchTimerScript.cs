@@ -10,11 +10,18 @@ namespace Project.Minigame.Stopwatch
 
         public TMP_Text timeText;
 
+        public TMP_Text goaltimeText;
+
         public TMP_Text ButtonText;
+
+        // playerDataへの参照
+        [SerializeField] private Projects.Core.PlayerData playerData;
 
         private bool isClick = false;
 
         private bool isbActive = false;
+
+        private double goalTime = 0.0f;
 
         public void OnStart()
         {
@@ -26,6 +33,10 @@ namespace Project.Minigame.Stopwatch
         void Start()
         {
             ButtonText.text = "Start";
+
+            goalTime = Random.Range(8, 20);
+            goaltimeText.text = (goalTime + "秒で止めろ");
+
         }
 
         // Update is called once per frame
@@ -47,8 +58,33 @@ namespace Project.Minigame.Stopwatch
 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    // stopしたときの処理
                     timeText.text = countup.ToString("f2");
                     isClick = true;
+
+                    double result = countup - goalTime;
+                    if (result < 1e-6)
+                    {
+                        // 目標時間より早い場合の処理
+                        float tmp = 1.0f + (float)result;
+                        int score = (int)Mathf.Max(0.0f, tmp * 50);
+                        Debug.Log("目標時間より早い: " + score);
+                        playerData.AddPoint(score); // スコア加算
+                    }
+                    else if (result > 1e-6)
+                    {
+                        // 目標時間より遅い場合の処理
+                        float tmp = 1.0f - (float)result;
+                        int score = (int)Mathf.Max(0.0f, tmp * 50);
+                        Debug.Log("目標時間より遅い: " + score);
+                        playerData.AddPoint(score); // スコア加算
+                    }
+                    else
+                    {
+                        // 目標時間に近い場合の処理
+                        Debug.Log("ピッタリ");
+                        playerData.AddPoint(100); // スコア加算
+                    }
                 }
             }
         }

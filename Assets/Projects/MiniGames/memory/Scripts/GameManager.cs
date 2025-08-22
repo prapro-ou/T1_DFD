@@ -41,6 +41,9 @@ namespace TaikoGame
         [SerializeField] private Button backtotitleButton;
         [SerializeField] private Button retryButton2;
         [SerializeField] private Button backtotitleButton2;
+        
+        // playerDataの参照
+        [SerializeField] private Projects.Core.PlayerData playerData; // PlayerDataの参照
 
 
         // ゲーム開始時に呼ばれる
@@ -283,6 +286,10 @@ namespace TaikoGame
 
             backtotitleButton.onClick.RemoveAllListeners();  // ★追加
             backtotitleButton.onClick.AddListener(OnBackToTitleButton);
+
+            // ポイントの付与
+            playerData.AddPoint(50); // PlayerDataのAddPointメソッドを呼び出す
+            
         }
 
         public void ResultBad()
