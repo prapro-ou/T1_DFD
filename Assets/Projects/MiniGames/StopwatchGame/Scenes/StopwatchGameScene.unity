@@ -688,6 +688,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1972024169}
     - target: {fileID: 7682562490121928520, guid: 5dd58994c6f6fa44c8bddb0c3c96bcd3, type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 11400000, guid: 395d77c7bdc33934ea9a5bbdd1ca994c, type: 2}
+    - target: {fileID: 7682562490121928520, guid: 5dd58994c6f6fa44c8bddb0c3c96bcd3, type: 3}
       propertyPath: goaltimeText
       value: 
       objectReference: {fileID: 2008086629}
