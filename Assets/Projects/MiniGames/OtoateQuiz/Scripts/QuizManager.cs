@@ -39,6 +39,8 @@ public class QuizManager : MonoBehaviour
     public AudioClip goodResultSound;
     public AudioClip badResultSound;
 
+    // playerData への参照
+    public Projects.Core.PlayerData playerData;
 
     private List<Quiz> randomizedQuizzes = new List<Quiz>();
     private int currentQuizIndex = 0;
@@ -193,6 +195,9 @@ public class QuizManager : MonoBehaviour
         {
             soundManager.PlaySound(badResultSound);     // それ以外は普通の音
         }
+
+        // ✅ ポイント加算
+        playerData.AddPoint(correctCount * 50);
 
             return;
     }
