@@ -50,6 +50,7 @@ namespace Project.Minigame.Stopwatch
             audioSource = GetComponent<AudioSource>();
 
             ButtonText.text = "Start";
+            timeText.text = "0.00";
 
             goalTime = Random.Range(8, 20);
             goaltimeText.text = (goalTime + "秒で止めよう");
