@@ -42,6 +42,8 @@ public class QuizManager : MonoBehaviour
     // playerData への参照
     public Projects.Core.PlayerData playerData;
 
+    [Header("効果音")]
+    public AudioClip buttonClickSE;
     private List<Quiz> randomizedQuizzes = new List<Quiz>();
     private int currentQuizIndex = 0;
     private int selectedIndex = -1;
