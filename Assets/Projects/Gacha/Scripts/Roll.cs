@@ -12,10 +12,11 @@ namespace Projects.Gacha
     {
         [SerializeField] private PlayerData playerData; // プレイヤーデータ
         private GachaData inputJson = new GachaData(); // ガチャデータ
-        private ClothingItems[] clothingItems = new ClothingItems[9]; // 服装データ（種類の数+1を指定）
+        private ClothingItems[] clothingItems = new ClothingItems[23]; // 服装データ（種類の数+1を指定）
         [SerializeField] private TextAsset clothingData;　// 服装データのCSVファイル
         public TextMeshProUGUI clothingNameText; // 服装名の表示用テキスト
         public GameObject sample; // 画面外から飛んでくる服が入った箱的なもの
+        public GameObject audioScript; // Audioスクリプトがアタッチされているオブジェクト
 
         class ClothingItems // 服装データのクラス
         {
@@ -56,7 +57,6 @@ namespace Projects.Gacha
                 clothingItems[i] = new ClothingItems();
                 clothingItems[i].id = int.Parse(lineSplit[0]);
                 clothingItems[i].name = lineSplit[1];
-                clothingItems[i].file = lineSplit[2];
                 i++;
             }
 
@@ -117,6 +117,12 @@ namespace Projects.Gacha
                 case 2:
                     contentResult = inputJson.contents.rarity2[Random.Range(0, inputJson.contents.rarity2.Length)];
                     break;
+                case 3:
+                    contentResult = inputJson.contents.rarity3[Random.Range(0, inputJson.contents.rarity3.Length)];
+                    break;
+                case 4:
+                    contentResult = inputJson.contents.rarity4[Random.Range(0, inputJson.contents.rarity4.Length)];
+                    break;
                 default:
                     contentResult = 0;
                     break;
@@ -139,10 +145,10 @@ namespace Projects.Gacha
             }
 
             // ガチャアニメーション
-            //Instantiate(sample, new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+            audioScript.GetComponent<Audio>().PlayGachaStartSound();
             GameObject instance = Instantiate(sample, new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
             Animation component = instance.GetComponent<Animation>();
-            component.SetClothingId(clothingItems[contentResult].id, contentResult);
+            component.SetClothingId(clothingItems[contentResult].id, contentResult, (rarityResult >= 2));
         }
     }
 
@@ -159,5 +165,7 @@ namespace Projects.Gacha
         public int[] rarity0;
         public int[] rarity1;
         public int[] rarity2;
+        public int[] rarity3;
+        public int[] rarity4;
     }
 }

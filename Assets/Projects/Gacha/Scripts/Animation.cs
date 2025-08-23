@@ -13,13 +13,16 @@ namespace Projects.Gacha
         private Color color;
         private int typeId;
         private int clothingId;
+        private bool isRare;
         private GameObject imageScript;
+        private GameObject audioScript;
 
         // ガチャで出た服装を受け取るメソッド
-        public void SetClothingId(int a, int b)
+        public void SetClothingId(int a, int b, bool c)
         {
             typeId = a;
             clothingId = b;
+            isRare = c;
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -73,6 +76,7 @@ namespace Projects.Gacha
             color = gameObject.GetComponent<SpriteRenderer>().material.color;
 
             imageScript = GameObject.Find("ImageScript");
+            audioScript = GameObject.Find("AudioScript");
             i = 0;
         }
 
@@ -101,6 +105,7 @@ namespace Projects.Gacha
                 else
                 {
                     imageScript.GetComponent<Image>().UpdateClothingImage(typeId, clothingId);
+                    audioScript.GetComponent<Audio>().PlayGachaResultSound(isRare);
                     Destroy(gameObject);
                 }
             }
