@@ -20,7 +20,7 @@ namespace Projects.Gacha
         {
             // ‚©‚ç‚¾‚ÆŠç‚Ì•\Ž¦
             bodyImageObject.GetComponent<SpriteRenderer>().sprite = bodyImage[playerData.status[0]];
-            faceImageObject.GetComponent<SpriteRenderer>().sprite = faceImage[4 * (playerData.status[0] - 1) + (playerData.status[1] + 1)];
+            faceImageObject.GetComponent<SpriteRenderer>().sprite = faceImage[5 * (playerData.status[0] - 1) + (playerData.status[1] + 1)];
             clothesImageObject.GetComponent<SpriteRenderer>().sprite = clothingImage[playerData.status[2]];
             socksImageObject.GetComponent<SpriteRenderer>().sprite = clothingImage[playerData.status[3]];
         }

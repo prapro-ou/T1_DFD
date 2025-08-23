@@ -582,12 +582,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 21300000, guid: 69c975694b70d3e438b2ea32374443c4, type: 3}
   - {fileID: 21300000, guid: 6c560c0092d9684479ced3b7936fc732, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 76bff65813f9beb4c924b003da90699b, type: 3}
+  - {fileID: 21300000, guid: 32a4c2a83f685aa4fa010fea4663d531, type: 3}
   - {fileID: 0}
   - {fileID: 21300000, guid: 627d9a99268f6f5479b886c4e0a55b70, type: 3}
   - {fileID: 21300000, guid: b11efe8804d2cdf4eba2d7592ad9d65b, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 9ab166b44f234c8438fae660dbd2c255, type: 3}
+  - {fileID: 21300000, guid: 681d2a7f8a9a8d34a8243bbbd838bb79, type: 3}
+  - {fileID: 21300000, guid: a10f0319b8216a84f8548d4d71e7391d, type: 3}
   clothingImage:
   - {fileID: 0}
   - {fileID: 21300000, guid: 777655ff2330c9744840d722781c04a0, type: 3}
@@ -598,6 +600,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a73f173c83c73f343a790f7d4c2a87d6, type: 3}
   - {fileID: 21300000, guid: 760e05ea22430f14da1d002f1bfef8f6, type: 3}
   - {fileID: 21300000, guid: 3928be129f66cea4cbb56950d446a0ee, type: 3}
+  - {fileID: 21300000, guid: 4b4b34eb47e4fa0489ceba78b3a3bb30, type: 3}
+  - {fileID: 21300000, guid: ab2b96eee0337254e975a3304945e079, type: 3}
+  - {fileID: 21300000, guid: 3c8303c5ffa41b948bd2fd56f747baa9, type: 3}
+  - {fileID: 21300000, guid: c4565fed247f4c04295b0abd29df124b, type: 3}
+  - {fileID: 21300000, guid: 59e8de8eec45d2540beb01ae68f7de5f, type: 3}
+  - {fileID: 21300000, guid: 48ea68364eb7ec0499e31915a66efb09, type: 3}
+  - {fileID: 21300000, guid: e9edc52e503a93745bd08b455b2676d6, type: 3}
+  - {fileID: 21300000, guid: fa27e9f3589d1fd419b8d19a3f5ddedf, type: 3}
+  - {fileID: 21300000, guid: 9d043b4949ef01f48b8ab531a937a53e, type: 3}
+  - {fileID: 21300000, guid: 7e2b01afd5e91bc478e75df4a0c60441, type: 3}
+  - {fileID: 21300000, guid: 4f0d16285c196d24cbd363a3be3e0ba0, type: 3}
+  - {fileID: 21300000, guid: f38de86b13357224cb1ecfcb7ab43236, type: 3}
+  - {fileID: 21300000, guid: cf1e5402ab652764f863891d2d89a815, type: 3}
+  - {fileID: 21300000, guid: 8eca9d3ed38e5804a9e5c0c61362ce7b, type: 3}
   bodyImageObject: {fileID: 1586524125}
   faceImageObject: {fileID: 1613094287}
   clothesImageObject: {fileID: 2142020029}

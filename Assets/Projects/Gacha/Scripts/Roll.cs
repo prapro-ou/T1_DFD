@@ -57,7 +57,6 @@ namespace Projects.Gacha
                 clothingItems[i] = new ClothingItems();
                 clothingItems[i].id = int.Parse(lineSplit[0]);
                 clothingItems[i].name = lineSplit[1];
-                clothingItems[i].file = lineSplit[2];
                 i++;
             }
 
@@ -118,6 +117,12 @@ namespace Projects.Gacha
                 case 2:
                     contentResult = inputJson.contents.rarity2[Random.Range(0, inputJson.contents.rarity2.Length)];
                     break;
+                case 3:
+                    contentResult = inputJson.contents.rarity3[Random.Range(0, inputJson.contents.rarity3.Length)];
+                    break;
+                case 4:
+                    contentResult = inputJson.contents.rarity4[Random.Range(0, inputJson.contents.rarity4.Length)];
+                    break;
                 default:
                     contentResult = 0;
                     break;
@@ -160,5 +165,7 @@ namespace Projects.Gacha
         public int[] rarity0;
         public int[] rarity1;
         public int[] rarity2;
+        public int[] rarity3;
+        public int[] rarity4;
     }
 }

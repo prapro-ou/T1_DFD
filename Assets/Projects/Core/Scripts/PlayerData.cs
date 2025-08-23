@@ -9,7 +9,7 @@ namespace Projects.Core
     {
         // 共有したいポイント
         public int point; // ガチャポイント
-        public int[] status; // [性別(男性:1,女性2), 若返りレベル(0～3), 着ている服, 履いている靴下]
+        public int[] status; // [性別(男性:1,女性2), 若返りレベル(0～4), 着ている服, 履いている靴下]
         public int[] clothingItems; // 所持している服装のリスト
 
         // ポイントを加算するメソッド
