@@ -13,7 +13,7 @@ namespace Projects.Home
         // 
         [SerializeField] private TextMeshProUGUI pointText;
         [SerializeField] private PlayerData playerData;
-
+        private int point;
         void Start()
         {
             if (playerData == null)
@@ -26,14 +26,19 @@ namespace Projects.Home
                 Debug.LogError("PointText is not assigned in the inspector!");
                 return;
             }
+            point = playerData.point;
 
-            pointText.text = "ポイント: " + playerData.point.ToString();
+            pointText.text = "ポイント: " + this.point.ToString();
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            if(playerData.point != point)
+            {
+                point = playerData.point;
+                pointText.text = "ポイント: " + this.point.ToString();
+            }
         }
     }
 
