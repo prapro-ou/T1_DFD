@@ -6,19 +6,28 @@ namespace Projects.Gacha
 {
     public class Image : MonoBehaviour
     {
-        [SerializeField] private PlayerData playerData; // ƒvƒŒƒCƒ„[ƒf[ƒ^
-        [SerializeField] private Sprite[] bodyImage; // ‚©‚ç‚¾‚Ì‰æ‘œ
-        [SerializeField] private Sprite[] faceImage; // Šç‚Ì‰æ‘œ
-        [SerializeField] private Sprite[] clothingImage; // •‘•‚Ì‰æ‘œ
-        public GameObject bodyImageObject; // ‚©‚ç‚¾‚Ì‰æ‘œ‚ğ•\¦‚·‚éƒIƒuƒWƒFƒNƒg
-        public GameObject faceImageObject; // Šç‚Ì‰æ‘œ‚ğ•\¦‚·‚éƒIƒuƒWƒFƒNƒg
-        public GameObject clothesImageObject; // •‚Ì‰æ‘œ‚ğ•\¦‚·‚éƒIƒuƒWƒFƒNƒg
-        public GameObject socksImageObject; // ŒC‰º‚Ì‰æ‘œ‚ğ•\¦‚·‚éƒIƒuƒWƒFƒNƒg
+        [SerializeField] private PlayerData playerData; // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½fï¿½[ï¿½^
+        [SerializeField] private Sprite[] bodyImage; // ï¿½ï¿½ï¿½ç‚¾ï¿½Ì‰æ‘œ
+        [SerializeField] private Sprite[] faceImage; // ï¿½ï¿½Ì‰æ‘œ
+        [SerializeField] private Sprite[] clothingImage; // ï¿½ï¿½ï¿½ï¿½ï¿½Ì‰æ‘œ
+        public GameObject bodyImageObject; // ï¿½ï¿½ï¿½ç‚¾ï¿½Ì‰æ‘œï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½g
+        public GameObject faceImageObject; // ï¿½ï¿½Ì‰æ‘œï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½g
+        public GameObject clothesImageObject; // ï¿½ï¿½ï¿½Ì‰æ‘œï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½g
+        public GameObject socksImageObject; // ï¿½Cï¿½ï¿½ï¿½Ì‰æ‘œï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½g
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
+        // 
+        public void reload()
+        {
+            // ï¿½ï¿½ï¿½ç‚¾ï¿½ÆŠï¿½Ì•\ï¿½ï¿½
+            bodyImageObject.GetComponent<SpriteRenderer>().sprite = bodyImage[playerData.status[0]];
+            faceImageObject.GetComponent<SpriteRenderer>().sprite = faceImage[5 * (playerData.status[0] - 1) + (playerData.status[1] + 1)];
+            clothesImageObject.GetComponent<SpriteRenderer>().sprite = clothingImage[playerData.status[2]];
+            socksImageObject.GetComponent<SpriteRenderer>().sprite = clothingImage[playerData.status[3]];
+        }
         void Start()
         {
-            // ‚©‚ç‚¾‚ÆŠç‚Ì•\¦
+            // ï¿½ï¿½ï¿½ç‚¾ï¿½ÆŠï¿½Ì•\ï¿½ï¿½
             bodyImageObject.GetComponent<SpriteRenderer>().sprite = bodyImage[playerData.status[0]];
             faceImageObject.GetComponent<SpriteRenderer>().sprite = faceImage[5 * (playerData.status[0] - 1) + (playerData.status[1] + 1)];
             clothesImageObject.GetComponent<SpriteRenderer>().sprite = clothingImage[playerData.status[2]];
@@ -31,7 +40,7 @@ namespace Projects.Gacha
         
         }
 
-        // •‘•‚Ì‰æ‘œ‚ğXV‚·‚éƒƒ\ƒbƒh
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ì‰æ‘œï¿½ï¿½ï¿½Xï¿½Vï¿½ï¿½ï¿½éƒï¿½\ï¿½bï¿½h
         public void UpdateClothingImage(int typeId, int clothingId)
         {
             if (typeId == 1)
