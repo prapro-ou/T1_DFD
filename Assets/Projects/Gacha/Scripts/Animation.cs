@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Projects.Gacha.Animation
+namespace Projects.Gacha
 {
     public class Animation : MonoBehaviour
     {
@@ -11,6 +11,19 @@ namespace Projects.Gacha.Animation
         private float b;
         private int i;
         private Color color;
+        private int typeId;
+        private int clothingId;
+        private bool isRare;
+        private GameObject imageScript;
+        private GameObject audioScript;
+
+        // ガチャで出た服装を受け取るメソッド
+        public void SetClothingId(int a, int b, bool c)
+        {
+            typeId = a;
+            clothingId = b;
+            isRare = c;
+        }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -62,6 +75,8 @@ namespace Projects.Gacha.Animation
             transform.position = new Vector3(initialPosX, initialPosY, 0f);
             color = gameObject.GetComponent<SpriteRenderer>().material.color;
 
+            imageScript = GameObject.Find("ImageScript");
+            audioScript = GameObject.Find("AudioScript");
             i = 0;
         }
 
@@ -89,7 +104,8 @@ namespace Projects.Gacha.Animation
                 }
                 else
                 {
-                    //[TODO]服の画像の表示
+                    imageScript.GetComponent<Image>().UpdateClothingImage(typeId, clothingId);
+                    audioScript.GetComponent<Audio>().PlayGachaResultSound(isRare);
                     Destroy(gameObject);
                 }
             }
