@@ -16,6 +16,7 @@ namespace Projects.Gacha
         [SerializeField] private TextAsset clothingData;　// 服装データのCSVファイル
         public TextMeshProUGUI clothingNameText; // 服装名の表示用テキスト
         public GameObject sample; // 画面外から飛んでくる服が入った箱的なもの
+        public GameObject audioScript; // Audioスクリプトがアタッチされているオブジェクト
 
         class ClothingItems // 服装データのクラス
         {
@@ -139,10 +140,10 @@ namespace Projects.Gacha
             }
 
             // ガチャアニメーション
-            //Instantiate(sample, new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+            audioScript.GetComponent<Audio>().PlayGachaStartSound();
             GameObject instance = Instantiate(sample, new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
             Animation component = instance.GetComponent<Animation>();
-            component.SetClothingId(clothingItems[contentResult].id, contentResult);
+            component.SetClothingId(clothingItems[contentResult].id, contentResult, (rarityResult >= 2));
         }
     }
 
