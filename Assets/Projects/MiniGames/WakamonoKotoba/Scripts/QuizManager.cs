@@ -113,7 +113,7 @@ namespace Projects.MiniGames.WakamonoKotoba
             quizResultShower.GetComponent<QuizResultShower>().showResult(correctCount, answeredQuizList.Count);
 
             // [TODO] ポイントは後で調整
-            playerData.AddPoint(correctCount * 10); // 正解数に応じてポイントを加算
+            playerData.AddPoint(correctCount * 50); // 正解数に応じてポイントを加算
             // クイズが終了したことをログに出力
             Debug.Log("クイズが終了しました。正解数: " + correctCount);
             
