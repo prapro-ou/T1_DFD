@@ -8,8 +8,8 @@ namespace Projects.Core
     public class PlayerData : ScriptableObject
     {
         // 共有したいポイント
-        public int point; // ガチャポイント
-        public int[] status; // [性別(男性:1,女性2), 若返りレベル(0～4), 着ている服, 履いている靴下]
+        public int point = 0; // ガチャポイント
+        public int[] status = {2,0,1,5 }; // [性別(男性:1,女性2), 若返りレベル(0～4), 着ている服, 履いている靴下]
         public int[] clothingItems; // 所持している服装のリスト
 
         // ポイントを加算するメソッド
