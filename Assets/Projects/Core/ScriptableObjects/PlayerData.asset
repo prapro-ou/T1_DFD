@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   point: 0
-  status: 01000000020000001000000013000000
+  status: 02000000000000000100000005000000
   clothingItems: 
