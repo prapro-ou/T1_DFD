@@ -9,9 +9,7 @@ namespace Project.Minigame.Stopwatch
         private float countup = 0.0f;
 
         public TMP_Text timeText;
-
         public TMP_Text goaltimeText;
-
         public TMP_Text ButtonText;
 
         // playerDataへの参照
@@ -23,19 +21,39 @@ namespace Project.Minigame.Stopwatch
 
         private double goalTime = 0.0f;
 
+        private AudioSource audioSource = null;
+        public AudioClip StartSE;
+        public AudioClip EndSE;
+
+        public void PlaySE(AudioClip clip)
+        {
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(clip);
+            }
+            else
+            {
+                Debug.Log("audioSource=null");
+            }
+        }
+
         public void OnStart()
         {
             isbActive = true;
             ButtonText.text = "Stop";
+            PlaySE(StartSE);
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            audioSource = GetComponent<AudioSource>();
+
             ButtonText.text = "Start";
+            timeText.text = "0.00";
 
             goalTime = Random.Range(8, 20);
-            goaltimeText.text = (goalTime + "秒で止めろ");
+            goaltimeText.text = (goalTime + "秒で止めよう");
 
         }
 
@@ -61,6 +79,7 @@ namespace Project.Minigame.Stopwatch
                     // stopしたときの処理
                     timeText.text = countup.ToString("f2");
                     isClick = true;
+                    PlaySE(EndSE);
 
                     double result = countup - goalTime;
                     if (result < 1e-6)
