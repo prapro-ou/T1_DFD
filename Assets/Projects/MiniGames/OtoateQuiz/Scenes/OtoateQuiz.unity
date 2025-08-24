@@ -3041,15 +3041,6 @@ MonoBehaviour:
     explanationA: "A\u304C\u6B63\u89E3"
     explanationB: "B\u306F\u30D1\u30C1\u30B9\u30ED\u306E\u30D5\u30EA\u30FC\u30BA\u97F3"
     explanationC: "C\u306FUFO\u30AD\u30E3\u30C3\u30C1\u30E3\u30FC\u306E\u64CD\u4F5C\u97F3"
-  - prompt: "\u304F\u3089\u5BFF\u53F8\u306E\u5230\u7740\u97F3\u306F\u3069\u308C\uFF1F"
-    options:
-    - {fileID: 8300000, guid: 50133ee879fc19749a94f801fc4b9f50, type: 3}
-    - {fileID: 8300000, guid: a4e22164a6db97245a730e67a5c264d6, type: 3}
-    - {fileID: 8300000, guid: 18deaa898ce496d4b82b534b33e16dbf, type: 3}
-    correctIndex: 2
-    explanationA: "A\u306F\u30B9\u30B7\u30ED\u30FC"
-    explanationB: "B\u306F\u306F\u307E\u5BFF\u53F8"
-    explanationC: "C\u304C\u6B63\u89E3\uFF01"
   - prompt: "\u30BB\u30D6\u30F3\u30A4\u30EC\u30D6\u30F3\u306E\u5165\u5E97\u97F3\u306F\u3069\u308C\uFF1F"
     options:
     - {fileID: 8300000, guid: 731bc189154ddba49b843a8027e7eddf, type: 3}
@@ -3077,24 +3068,60 @@ MonoBehaviour:
     explanationA: "A\u306F\u96FB\u8ECA\u306E\u767A\u8ECA\u30D9\u30EB"
     explanationB: "B\u306F\u8239\u306E\u6C7D\u7B1B"
     explanationC: "C\u304C\u6B63\u89E3\uFF01"
-  - prompt: "\u304A\u98A8\u5442\u304C\u6CB8\u3044\u305F\u6642\u306E\u97F3\u306F\u3069\u308C\uFF1F"
+  - prompt: "\u30A2\u30D6\u30E9\u30BC\u30DF\u306E\u9CF4\u304D\u58F0\u306F\u3069\u308C\uFF1F"
     options:
-    - {fileID: 8300000, guid: 4968b2a72bcbe5147a32c05cb3d53b10, type: 3}
-    - {fileID: 8300000, guid: 447607c580c2c1a44a1f03727d85bbdd, type: 3}
-    - {fileID: 8300000, guid: d3edc284e1ae66241bae93ca72450c2f, type: 3}
+    - {fileID: 8300000, guid: 5e567c25fea739a4bbc5e7ae6227108e, type: 3}
+    - {fileID: 8300000, guid: a39eb0262294d5945bf8b8ef2a87b08b, type: 3}
+    - {fileID: 8300000, guid: cca0e28738e6ffc44ba2d7c87b7f2ab5, type: 3}
+    correctIndex: 2
+    explanationA: "A\u306F\u30DF\u30F3\u30DF\u30F3\u30BC\u30DF"
+    explanationB: "B\u306F\u30C4\u30AF\u30C4\u30AF\u30DC\u30A6\u30B7"
+    explanationC: "C\u304C\u6B63\u89E3\uFF01"
+  - prompt: "\u98A8\u9234\u306E\u97F3\u306F\u3069\u308C\uFF1F"
+    options:
+    - {fileID: 8300000, guid: 51d5c7b428ea1f94b85f25551d3e0d60, type: 3}
+    - {fileID: 8300000, guid: d5eeb9614dd342d49ac884d7c8b61f55, type: 3}
+    - {fileID: 8300000, guid: 0d600a5e49c3e2d449aed306075504c4, type: 3}
     correctIndex: 0
     explanationA: "A\u304C\u6B63\u89E3\uFF01"
-    explanationB: "B\u306F\u304A\u6E6F\u304C\u6CB8\u3044\u305F\u6642\u306E\u97F3"
-    explanationC: "C\u306F\u96FB\u8A71\u306E\u4FDD\u7559\u97F3"
-  - prompt: "Teams\u306E\u7740\u4FE1\u97F3\u306F\u3069\u308C\uFF1F"
+    explanationB: "B\u306F\u30B0\u30E9\u30B9\u3092\u5408\u308F\u305B\u305F\u97F3"
+    explanationC: "C\u306F\u81EA\u8EE2\u8ECA\u306E\u30D9\u30EB\u306E\u97F3"
+  - prompt: "\u30DC\u30A6\u30EA\u30F3\u30B0\u5834\u306E\u97F3\u306F\u3069\u308C\uFF1F"
     options:
-    - {fileID: 8300000, guid: 373219037d7a99d4d9a2140be5c18eb8, type: 3}
-    - {fileID: 8300000, guid: d4cb8b7ad3fd49e4a8befc7a87d59986, type: 3}
-    - {fileID: 8300000, guid: 8ef8f9d03a2211449b5e3cbaf04ea4d4, type: 3}
+    - {fileID: 8300000, guid: 7da95bde2d7ec7e44b56d06ff0842c55, type: 3}
+    - {fileID: 8300000, guid: b6a62568b5f77bd41972b833bdfa91c8, type: 3}
+    - {fileID: 8300000, guid: 7650b9f1bd078474c89f7db3d03eac75, type: 3}
+    correctIndex: 1
+    explanationA: "A\u306F\u30D3\u30EA\u30E4\u30FC\u30C9\u5834"
+    explanationB: "B\u304C\u6B63\u89E3\uFF01"
+    explanationC: "C\u306F\u30ED\u30DC\u30C3\u30C8\u5DE5\u5834"
+  - prompt: "\u30D0\u30B9\u30B1\u30C3\u30C8\u30DC\u30FC\u30EB\u304C\u8DF3\u306D\u308B\u97F3\u306F\u3069\u308C\uFF1F"
+    options:
+    - {fileID: 8300000, guid: 608a0e82bfbe7ab4a9e7bed9134b6054, type: 3}
+    - {fileID: 8300000, guid: f66c55b5551b0a94b86fbbabbcfcb02a, type: 3}
+    - {fileID: 8300000, guid: 6c73ca923e6010943b0d4a04ad0b087e, type: 3}
     correctIndex: 0
     explanationA: "A\u304C\u6B63\u89E3\uFF01"
-    explanationB: "B\u306F\u658E\u85E4\u3055\u3093\u306E\u7740\u4FE1\u97F3"
-    explanationC: "C\u306FLINE\u306E\u7740\u4FE1\u97F3"
+    explanationB: "B\u306F\u30B5\u30C3\u30AB\u30FC\u30DC\u30FC\u30EB"
+    explanationC: "C\u306F\u30D4\u30F3\u30DD\u30F3\u7389"
+  - prompt: "\u96EA\u306E\u4E0A\u3092\u8D70\u308B\u97F3\u306F\u3069\u308C\uFF1F"
+    options:
+    - {fileID: 8300000, guid: b52c4ca1df48a84479214655c1b1bd0f, type: 3}
+    - {fileID: 8300000, guid: 2e38ea074e44a25499a3fafa272d8040, type: 3}
+    - {fileID: 8300000, guid: 45f6141277a274345838f40da781ed00, type: 3}
+    correctIndex: 2
+    explanationA: "A\u306F\u30A2\u30B9\u30D5\u30A1\u30EB\u30C8\u306E\u4E0A"
+    explanationB: "B\u306F\u7802\u306E\u4E0A"
+    explanationC: "C\u304C\u6B63\u89E3\uFF01"
+  - prompt: "\u96EA\u306E\u4E0A\u3092\u8D70\u308B\u97F3\u306F\u3069\u308C\uFF1F"
+    options:
+    - {fileID: 8300000, guid: b52c4ca1df48a84479214655c1b1bd0f, type: 3}
+    - {fileID: 8300000, guid: 2e38ea074e44a25499a3fafa272d8040, type: 3}
+    - {fileID: 8300000, guid: 45f6141277a274345838f40da781ed00, type: 3}
+    correctIndex: 2
+    explanationA: "A\u306F\u30A2\u30B9\u30D5\u30A1\u30EB\u30C8\u306E\u4E0A"
+    explanationB: "B\u306F\u7802\u306E\u4E0A"
+    explanationC: "C\u304C\u6B63\u89E3\uFF01"
   quizScreen: {fileID: 1195775857}
   promptText: {fileID: 2029442281}
   playButtons:
