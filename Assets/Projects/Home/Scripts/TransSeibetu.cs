@@ -11,8 +11,10 @@ namespace Projects.Home
 
         [SerializeField] private Projects.Gacha.Image imageScript; // Imageスクリプトがアタッチされているオブジェクト
 
+
         void onClick()
         {
+            Debug.Log("TransSeibetu onClick");
             if (playerData.status[0] == 1) // 男性
             {
                 playerData.status[0] = 2; // 女性に変更
@@ -22,11 +24,11 @@ namespace Projects.Home
                 playerData.status[0] = 1; // 男性に変更
             }
 
-            playerData.status[2] = 0; // 服装を初期化
-            playerData.status[3] = 0; // 靴下を初期化
 
-            imageScript.reload(); // 画像を更新
-            
+            // 服を初期化
+            imageScript.resetClothes();
+            // imageScript.reload(); // 画像を更新
+
         }
         void Start()
         {
