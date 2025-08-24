@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7289f8920757de43a17b58f80aa20b5, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  point: 800
-  status: 01000000020000000f00000013000000
+  point: 0
+  status: 01000000020000001000000013000000
   clothingItems: 
