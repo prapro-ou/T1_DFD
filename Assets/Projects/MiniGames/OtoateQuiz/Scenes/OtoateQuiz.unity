@@ -3041,15 +3041,6 @@ MonoBehaviour:
     explanationA: "A\u304C\u6B63\u89E3"
     explanationB: "B\u306F\u30D1\u30C1\u30B9\u30ED\u306E\u30D5\u30EA\u30FC\u30BA\u97F3"
     explanationC: "C\u306FUFO\u30AD\u30E3\u30C3\u30C1\u30E3\u30FC\u306E\u64CD\u4F5C\u97F3"
-  - prompt: "\u304F\u3089\u5BFF\u53F8\u306E\u5230\u7740\u97F3\u306F\u3069\u308C\uFF1F"
-    options:
-    - {fileID: 8300000, guid: 50133ee879fc19749a94f801fc4b9f50, type: 3}
-    - {fileID: 8300000, guid: a4e22164a6db97245a730e67a5c264d6, type: 3}
-    - {fileID: 8300000, guid: 18deaa898ce496d4b82b534b33e16dbf, type: 3}
-    correctIndex: 2
-    explanationA: "A\u306F\u30B9\u30B7\u30ED\u30FC"
-    explanationB: "B\u306F\u306F\u307E\u5BFF\u53F8"
-    explanationC: "C\u304C\u6B63\u89E3\uFF01"
   - prompt: "\u30BB\u30D6\u30F3\u30A4\u30EC\u30D6\u30F3\u306E\u5165\u5E97\u97F3\u306F\u3069\u308C\uFF1F"
     options:
     - {fileID: 8300000, guid: 731bc189154ddba49b843a8027e7eddf, type: 3}
@@ -3077,24 +3068,6 @@ MonoBehaviour:
     explanationA: "A\u306F\u96FB\u8ECA\u306E\u767A\u8ECA\u30D9\u30EB"
     explanationB: "B\u306F\u8239\u306E\u6C7D\u7B1B"
     explanationC: "C\u304C\u6B63\u89E3\uFF01"
-  - prompt: "\u304A\u98A8\u5442\u304C\u6CB8\u3044\u305F\u6642\u306E\u97F3\u306F\u3069\u308C\uFF1F"
-    options:
-    - {fileID: 8300000, guid: 4968b2a72bcbe5147a32c05cb3d53b10, type: 3}
-    - {fileID: 8300000, guid: 447607c580c2c1a44a1f03727d85bbdd, type: 3}
-    - {fileID: 8300000, guid: d3edc284e1ae66241bae93ca72450c2f, type: 3}
-    correctIndex: 0
-    explanationA: "A\u304C\u6B63\u89E3\uFF01"
-    explanationB: "B\u306F\u304A\u6E6F\u304C\u6CB8\u3044\u305F\u6642\u306E\u97F3"
-    explanationC: "C\u306F\u96FB\u8A71\u306E\u4FDD\u7559\u97F3"
-  - prompt: "Teams\u306E\u7740\u4FE1\u97F3\u306F\u3069\u308C\uFF1F"
-    options:
-    - {fileID: 8300000, guid: 373219037d7a99d4d9a2140be5c18eb8, type: 3}
-    - {fileID: 8300000, guid: d4cb8b7ad3fd49e4a8befc7a87d59986, type: 3}
-    - {fileID: 8300000, guid: 8ef8f9d03a2211449b5e3cbaf04ea4d4, type: 3}
-    correctIndex: 0
-    explanationA: "A\u304C\u6B63\u89E3\uFF01"
-    explanationB: "B\u306F\u658E\u85E4\u3055\u3093\u306E\u7740\u4FE1\u97F3"
-    explanationC: "C\u306FLINE\u306E\u7740\u4FE1\u97F3"
   quizScreen: {fileID: 1195775857}
   promptText: {fileID: 2029442281}
   playButtons:
