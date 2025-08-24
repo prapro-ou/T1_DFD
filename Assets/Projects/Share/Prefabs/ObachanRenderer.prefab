@@ -85,6 +85,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f38de86b13357224cb1ecfcb7ab43236, type: 3}
   - {fileID: 21300000, guid: cf1e5402ab652764f863891d2d89a815, type: 3}
   - {fileID: 21300000, guid: 8eca9d3ed38e5804a9e5c0c61362ce7b, type: 3}
+  defaultManClothesId: 15
+  defaultWomenClothesId: 1
+  DefaultManSocksId: 19
+  DefaultWomenSocksId: 5
   bodyImageObject: {fileID: 6242713130543687453}
   faceImageObject: {fileID: 269969928782259190}
   clothesImageObject: {fileID: 8374967147497784079}
