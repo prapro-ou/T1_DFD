@@ -1,0 +1,20 @@
+============================================================
+LICENSES AND CREDITS
+============================================================
+
+This game uses materials from the following third parties.
+We are grateful for their contributions.
+
+このゲームは、以下のサードパーティによって作成された素材を利用しています。
+素晴らしい素材の提供に感謝いたします。
+
+
+------------------------------------------------------------
+■ Twemoji (Emoji Graphics)
+------------------------------------------------------------
+
+Copyright 2019 Twitter, Inc and other contributors.
+
+The graphics are licensed under the Creative Commons Attribution 4.0 International License (CC-BY 4.0).
+You can view a copy of this license here:
+https://creativecommons.org/licenses/by/4.0/
