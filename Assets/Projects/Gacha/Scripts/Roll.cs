@@ -61,7 +61,7 @@ namespace Projects.Gacha
             }
 
             // 服装名を表示
-            clothingNameText.text = "Null";
+            clothingNameText.text = "";
         }
 
         // Update is called once per frame
