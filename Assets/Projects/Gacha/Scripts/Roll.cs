@@ -12,7 +12,7 @@ namespace Projects.Gacha
     {
         [SerializeField] private PlayerData playerData; // プレイヤーデータ
         private GachaData inputJson = new GachaData(); // ガチャデータ
-        private ClothingItems[] clothingItems = new ClothingItems[23]; // 服装データ（種類の数+1を指定）
+        private ClothingItems[] clothingItems = new ClothingItems[27]; // 服装データ（種類の数+1を指定）
         [SerializeField] private TextAsset clothingData;　// 服装データのCSVファイル
         public TextMeshProUGUI clothingNameText; // 服装名の表示用テキスト
         public GameObject sample; // 画面外から飛んでくる服が入った箱的なもの
