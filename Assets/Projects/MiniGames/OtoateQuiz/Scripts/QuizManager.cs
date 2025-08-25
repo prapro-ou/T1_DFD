@@ -122,7 +122,7 @@ public class QuizManager : MonoBehaviour
     void PlaySound(int index)
     {
         var quiz = randomizedQuizzes[currentQuizIndex];
-        soundManager.PlaySound(quiz.options[index]);
+        soundManager.PlaySound(quiz.options[index], 1.5f);
     }
 
     void OnSelectAnswer(int index)
